@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>test | blog of konjac LsWn</title>
+  <title>题解-[JROI-2020] 毒瘤题 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is just a test to put my blogs on this github page.   试验能否成功">
+  <meta name="description" content="JROI-2020 Round 1  T1 毒瘤题本题一点也不毒瘤。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="2020/03/03/test/index.html">
+<meta property="og:title" content="题解-[JROI-2020] 毒瘤题">
+<meta property="og:url" content="2020/03/30/%E9%A2%98%E8%A7%A3-%5BJROI-2020%5D%20%E6%AF%92%E7%98%A4%E9%A2%98/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="This is just a test to put my blogs on this github page.   试验能否成功">
+<meta property="og:description" content="JROI-2020 Round 1  T1 毒瘤题本题一点也不毒瘤。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-03T06:00:10.054Z">
-<meta property="article:modified_time" content="2020-03-03T06:03:57.366Z">
+<meta property="article:published_time" content="2020-03-29T23:45:13.871Z">
+<meta property="article:modified_time" content="2020-03-29T23:52:17.547Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -150,32 +150,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-题解-[JROI-2020] 毒瘤题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      test
+      题解-[JROI-2020] 毒瘤题
     </h1>
   
 
         
-        <a href="2020/03/03/test/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-03T06:00:10.054Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
+        <a href="2020/03/30/题解-[JROI-2020] 毒瘤题/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-03-29T23:45:13.871Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This is just a test to put my blogs on this github page.  </p>
-<p>试验能否成功  </p>
+        <h1 id="JROI-2020-Round-1-T1-毒瘤题"><a href="#JROI-2020-Round-1-T1-毒瘤题" target="_blank" rel="noopener" class="headerlink" title="JROI-2020 Round 1  T1 毒瘤题"></a><a href="https://www.luogu.com.cn/contest/28088" target="_blank" rel="noopener">JROI-2020 Round 1</a>  <a href="https://www.luogu.com.cn/problem/T127276?contestId=28088" target="_blank" rel="noopener">T1 毒瘤题</a></h1><p>本题一点也不毒瘤。</p>
 <a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">"Test"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>$test:\sum\limits_{v\in u}a_v$</p>
-<h1 id="TEST"><a href="#TEST" target="_blank" rel="noopener" class="headerlink" title="TEST"></a>TEST</h1>
+<p>本题很简单，我们看链的部分分，链的情况，肯定就是处于最高的那个小人获得胜利。</p>
+<p>那么树的也是，就是算出哪个小人的深度最小且是深度最小中编号最大的一个是第一个到达终点的。</p>
+<p>所以一开始先算出深度，最后打擂台求解即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">9</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> to,nxt;&#125;e[N*<span class="number">2</span>]; <span class="keyword">int</span> hd[N],tot;</span><br><span class="line"><span class="keyword">int</span> n,m,d[N],ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i;i=e[i].nxt)</span><br><span class="line">		<span class="keyword">if</span>((v=e[i].to)!=fa)</span><br><span class="line">			d[v]=d[u]+<span class="number">1</span>,dfs(v,u); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,u,v;i&lt;n;i++) <span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;u&gt;&gt;v;</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">0</span>); d[<span class="number">0</span>]=<span class="number">1e9</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,g;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;g;</span><br><span class="line">		<span class="keyword">if</span>(d[g]&lt;d[ans]) ans=g;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(d[g]==d[ans]&amp;&amp;g&lt;ans) ans=g;</span><br><span class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;ans; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -233,7 +234,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:2020/03/03/test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/03/30/题解-[JROI-2020] 毒瘤题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -247,15 +248,11 @@
   
 <nav id="article-nav">
   
-    <a href="2020/03/04/test2/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          test2
-        
-      </div>
-    </a>
   
+    <a href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">30分钟dinic挑战失败有感</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
