@@ -150,6 +150,147 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-题解-[SHjOI-2020] Tetris" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener">题解-[SHjOI-2020] Tetris</a>
+    </h1>
+  
+
+        
+        <a href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-03T07:04:14.699Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tetris"><a href="#Tetris" target="_blank" rel="noopener" class="headerlink" title="Tetris"></a>Tetris</h1><h2 id="题目背景"><a href="#题目背景" target="_blank" rel="noopener" class="headerlink" title="题目背景"></a>题目背景</h2><p>签到题，巨佬们应该珂以一看就看出来。</p>
+<p>你说这是俄罗斯方块然鹅这题却不方块？这不科学！！！</p>
+<h2 id="整理"><a href="#整理" target="_blank" rel="noopener" class="headerlink" title="整理"></a>整理</h2><p>我们整理一下这道题。首先我们发现要求 LW 笑话数量，求出 LW 字符串后乘法原理做就行了。所以我们只需要关注 LW 字符串的数量。</p>
+<p>题目中说 LW 字符串的前一半是倒序的。我们看倒序不舒服，于是就把他转过来。比如说原本两个后缀<code>abc</code>和<code>def</code>构成的 LW 字符串是<code>cbadef</code>，那么我们把他<code>abcdef</code>也无妨。所以接下来的我们都按两个后缀直接拼接起来处理。为了更清楚一点，我们把恢复成两个后缀直接拼接起来的字符串叫做伪 LW 字符串</p>
+<p>接下来是伪 LW 字符串的整理后的规则：  </p>
+<ul>
+<li>是两个字典里的词的后缀拼接起来的</li>
+<li>这两个后缀不能相同</li>
+</ul>
+<h2 id="答案"><a href="#答案" target="_blank" rel="noopener" class="headerlink" title="答案"></a>答案</h2><p>看到后缀，我们珂以把整个字符串倒序存进 Trie 树里面，这样求后缀就简单得多。现在一个后缀就是一条以根节点为链顶的一条链。</p>
+<p>现在问题简化为，Trie 树上，有多少经过根的链，由两条不同的经过根的链组成。这就是一个简简单单问题。如果你偏爱 DP，珂以用树形 DP 搞定。如果你偏爱组合，你就可以用一个式子搞定。</p>
+<p>对于节点$u$，计算子树内有多少以$u$为链顶的链$g_u$。我们设子树内有多少经过$u$的由两条以$u$为链顶的链组成的链$f_u$，<br>则有$f_u=(\sum g_v)^2-\sum g_v$<br>然后树形递推$g_u=\sum g_v$，初始状态是叶节点的$g$为$1$</p>
+<h2 id="结论"><a href="#结论" target="_blank" rel="noopener" class="headerlink" title="结论"></a>结论</h2><p>综上可得，这是一道签到题，只要你会 Trie，这道题就变得非常简单。</p>
+<h2 id="代码"><a href="#代码" target="_blank" rel="noopener" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">1e6</span>+<span class="number">9</span>,mod=<span class="number">99824353</span>;</span><br><span class="line">ll n,ch[N][<span class="number">26</span>],tot,g[N],ans; <span class="keyword">char</span> c[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(ll u=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="built_in">strlen</span>(c+<span class="number">1</span>);i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">        <span class="keyword">if</span>(ch[u][c[i]-<span class="string">'a'</span>]) u=ch[u][c[i]-<span class="string">'a'</span>]; <span class="keyword">else</span> u=ch[u][c[i]-<span class="string">'a'</span>]=++tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> son=<span class="number">0</span>; g[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) <span class="keyword">if</span>(ch[u][i]) g[u]=(g[u]+dp(ch[u][i],u))%mod,son=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> g[u];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n); <span class="keyword">for</span>(<span class="keyword">register</span> ll i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c+<span class="number">1</span>),add();</span><br><span class="line">    dp(<span class="number">0</span>,<span class="number">-1</span>); g[<span class="number">0</span>]--;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) <span class="keyword">if</span>(ch[<span class="number">0</span>][i]) ans=(ans+g[ch[<span class="number">0</span>][i]]*(g[<span class="number">0</span>]-g[ch[<span class="number">0</span>][i]])%mod)%mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,(ans*ans-ans)%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener">戳我看全文~ >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-导数笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
+    </h1>
+  
+
+        
+        <a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="导数-笔记"><a href="#导数-笔记" target="_blank" rel="noopener" class="headerlink" title="导数 笔记"></a>导数 笔记</h1><p>导数笔记</p>
+        
+          <a class="article-more-a" href="2020/04/03/导数笔记/#more" target="_blank" rel="noopener">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">戳我看全文~ >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-题解-[JROI-2020] 毒瘤题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

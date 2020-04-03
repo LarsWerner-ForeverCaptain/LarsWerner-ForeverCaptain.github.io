@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives | blog of konjac LsWn</title>
+  <title>题解-[SHjOI-2020] Tetris | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/index.html">
+  <meta name="description" content="Tetris题目背景签到题，巨佬们应该珂以一看就看出来。 你说这是俄罗斯方块然鹅这题却不方块？这不科学！！！ 整理我们整理一下这道题。首先我们发现要求 LW 笑话数量，求出 LW 字符串后乘法原理做就行了。所以我们只需要关注 LW 字符串的数量。 题目中说 LW 字符串的前一半是倒序的。我们看倒序不舒服，于是就把他转过来。比如说原本两个后缀abc和def构成的 LW 字符串是cbadef，那么我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解-[SHjOI-2020] Tetris">
+<meta property="og:url" content="2020/04/03/%E9%A2%98%E8%A7%A3-%5BSHjOI-2020%5D%20Tetris/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="Tetris题目背景签到题，巨佬们应该珂以一看就看出来。 你说这是俄罗斯方块然鹅这题却不方块？这不科学！！！ 整理我们整理一下这道题。首先我们发现要求 LW 笑话数量，求出 LW 字符串后乘法原理做就行了。所以我们只需要关注 LW 字符串的数量。 题目中说 LW 字符串的前一半是倒序的。我们看倒序不舒服，于是就把他转过来。比如说原本两个后缀abc和def构成的 LW 字符串是cbadef，那么我们">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-03T07:04:14.699Z">
+<meta property="article:modified_time" content="2020-04-03T07:05:44.502Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,265 +150,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-题解-[SHjOI-2020] Tetris" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      题解-[SHjOI-2020] Tetris
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener" class="archive-article-date">
+
+        
+        <a href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener" class="archive-article-date">
   	<time datetime="2020-04-03T07:04:14.699Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/题解-[SHjOI-2020] Tetris/" target="_blank" rel="noopener">题解-[SHjOI-2020] Tetris</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tetris"><a href="#Tetris" target="_blank" rel="noopener" class="headerlink" title="Tetris"></a>Tetris</h1><h2 id="题目背景"><a href="#题目背景" target="_blank" rel="noopener" class="headerlink" title="题目背景"></a>题目背景</h2><p>签到题，巨佬们应该珂以一看就看出来。</p>
+<p>你说这是俄罗斯方块然鹅这题却不方块？这不科学！！！</p>
+<h2 id="整理"><a href="#整理" target="_blank" rel="noopener" class="headerlink" title="整理"></a>整理</h2><p>我们整理一下这道题。首先我们发现要求 LW 笑话数量，求出 LW 字符串后乘法原理做就行了。所以我们只需要关注 LW 字符串的数量。</p>
+<p>题目中说 LW 字符串的前一半是倒序的。我们看倒序不舒服，于是就把他转过来。比如说原本两个后缀<code>abc</code>和<code>def</code>构成的 LW 字符串是<code>cbadef</code>，那么我们把他<code>abcdef</code>也无妨。所以接下来的我们都按两个后缀直接拼接起来处理。为了更清楚一点，我们把恢复成两个后缀直接拼接起来的字符串叫做伪 LW 字符串</p>
+<p>接下来是伪 LW 字符串的整理后的规则：  </p>
+<ul>
+<li>是两个字典里的词的后缀拼接起来的</li>
+<li>这两个后缀不能相同</li>
+</ul>
+<h2 id="答案"><a href="#答案" target="_blank" rel="noopener" class="headerlink" title="答案"></a>答案</h2><p>看到后缀，我们珂以把整个字符串倒序存进 Trie 树里面，这样求后缀就简单得多。现在一个后缀就是一条以根节点为链顶的一条链。</p>
+<p>现在问题简化为，Trie 树上，有多少经过根的链，由两条不同的经过根的链组成。这就是一个简简单单问题。如果你偏爱 DP，珂以用树形 DP 搞定。如果你偏爱组合，你就可以用一个式子搞定。</p>
+<p>对于节点$u$，计算子树内有多少以$u$为链顶的链$g_u$。我们设子树内有多少经过$u$的由两条以$u$为链顶的链组成的链$f_u$，<br>则有$f_u=(\sum g_v)^2-\sum g_v$<br>然后树形递推$g_u=\sum g_v$，初始状态是叶节点的$g$为$1$</p>
+<h2 id="结论"><a href="#结论" target="_blank" rel="noopener" class="headerlink" title="结论"></a>结论</h2><p>综上可得，这是一道签到题，只要你会 Trie，这道题就变得非常简单。</p>
+<h2 id="代码"><a href="#代码" target="_blank" rel="noopener" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">1e6</span>+<span class="number">9</span>,mod=<span class="number">99824353</span>;</span><br><span class="line">ll n,ch[N][<span class="number">26</span>],tot,g[N],ans; <span class="keyword">char</span> c[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(ll u=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="built_in">strlen</span>(c+<span class="number">1</span>);i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">        <span class="keyword">if</span>(ch[u][c[i]-<span class="string">'a'</span>]) u=ch[u][c[i]-<span class="string">'a'</span>]; <span class="keyword">else</span> u=ch[u][c[i]-<span class="string">'a'</span>]=++tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> son=<span class="number">0</span>; g[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) <span class="keyword">if</span>(ch[u][i]) g[u]=(g[u]+dp(ch[u][i],u))%mod,son=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> g[u];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n); <span class="keyword">for</span>(<span class="keyword">register</span> ll i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c+<span class="number">1</span>),add();</span><br><span class="line">    dp(<span class="number">0</span>,<span class="number">-1</span>); g[<span class="number">0</span>]--;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) <span class="keyword">if</span>(ch[<span class="number">0</span>][i]) ans=(ans+g[ch[<span class="number">0</span>][i]]*(g[<span class="number">0</span>]-g[ch[<span class="number">0</span>][i]])%mod)%mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,(ans*ans-ans)%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/04/03/题解-[SHjOI-2020] Tetris/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">导数笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/04/03/题解-[SHjOI-2020] Tetris/", 
+    sourceId: "题解-[SHjOI-2020] Tetris",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/30/题解-[JROI-2020] 毒瘤题/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-29T23:45:13.871Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/30/题解-[JROI-2020] 毒瘤题/" target="_blank" rel="noopener">题解-[JROI-2020] 毒瘤题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-27T02:57:33.722Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener">30分钟dinic挑战失败有感</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/15/任务计划列表/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-15T08:06:25.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/15/任务计划列表/" target="_blank" rel="noopener">任务计划列表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/06/常用建模解法/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-06T02:20:53.682Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/06/常用建模解法/" target="_blank" rel="noopener">常用建模解法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/04/好文章/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-04T05:55:57.841Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/04/好文章/" target="_blank" rel="noopener">好文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/04/test2/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-04T05:42:40.618Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/04/test2/" target="_blank" rel="noopener">test2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/03/test/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-03T06:00:10.054Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/03/test/" target="_blank" rel="noopener">test</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -429,8 +325,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
