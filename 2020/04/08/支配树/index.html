@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives: 2020/4 | blog of konjac LsWn</title>
+  <title>支配树 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/2020/04/index.html">
+  <meta name="description" content="支配树目录：1. DAG 的支配树问题  2. 有向图的支配树问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支配树">
+<meta property="og:url" content="2020/04/08/%E6%94%AF%E9%85%8D%E6%A0%91/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="支配树目录：1. DAG 的支配树问题  2. 有向图的支配树问题">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-08T04:25:31.941Z">
+<meta property="article:modified_time" content="2020-04-08T06:05:14.791Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,103 +150,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-支配树" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      支配树
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/08/支配树/" target="_blank" rel="noopener" class="archive-article-date">
+
+        
+        <a href="2020/04/08/支配树/" target="_blank" rel="noopener" class="archive-article-date">
   	<time datetime="2020-04-08T04:25:31.941Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/08/支配树/" target="_blank" rel="noopener">支配树</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="支配树"><a href="#支配树" target="_blank" rel="noopener" class="headerlink" title="支配树"></a>支配树</h1><h4 id="目录："><a href="#目录：" target="_blank" rel="noopener" class="headerlink" title="目录："></a>目录：</h4><pre><code>1. DAG 的支配树问题
+ 2. 有向图的支配树问题
+</code></pre><a id="more"></a>
+<h4 id="DAG-的支配树问题（食物网问题）"><a href="#DAG-的支配树问题（食物网问题）" target="_blank" rel="noopener" class="headerlink" title="DAG 的支配树问题（食物网问题）"></a>DAG 的支配树问题（食物网问题）</h4><p><a href="https://www.luogu.com.cn/problem/P2597" target="_blank" rel="noopener">题目传送门</a></p>
+<h5 id="问题"><a href="#问题" target="_blank" rel="noopener" class="headerlink" title="问题"></a>问题</h5><p>​    一个食物网有N个点，代表N种生物，如果生物x可以吃生物y，那么从y向x连一个有向边。这个图没有环。</p>
+<p>​    图中有一些点没有连出边，这些点代表的生物都是生产者，可以通过光合作用来生存； 而有连出边的点代表的都是消费者，它们必须通过吃其他生物来生存。</p>
+<p>​    如果某个消费者的所有食物都灭绝了，它会跟着灭绝。</p>
+<p>​    我们定义一个生物在食物网中的“灾难值”为，如果它突然灭绝，那么会跟着一起灭绝的生物的种数。给定一个食物网，你要求出每个生物的灾难值。</p>
+<h5 id="简化"><a href="#简化" target="_blank" rel="noopener" class="headerlink" title="简化"></a>简化</h5><p>​    一个 DAG，求切断点 $u$ 后无法从原图上没有入度的点到达的点的数量。若切断了 $u$ 无法到达 $v$，那么 $u$ 是 $v$ 的支配点。求出每个点支配了几个点。</p>
+<h5 id="树上解法"><a href="#树上解法" target="_blank" rel="noopener" class="headerlink" title="树上解法"></a>树上解法</h5><p>​    如果这个食物网只是一棵树的话，假设所有的生产者都是根节点，那么这就是一个森林，一个生物的灾难值就是子树的大小，一遍 $dfs$ 就能求出点。</p>
+<h5 id="求支配树"><a href="#求支配树" target="_blank" rel="noopener" class="headerlink" title="求支配树"></a>求支配树</h5><p>​    如果是一个 DAG，那么我们要把他建成一个树。我们设离点 $u$ 最近的支配 $u$ 的点为 $v$，那么 $v$ 应该是 $u$ 的所有直接前驱节点的 $lca$ 。</p>
+<p>​     我们把这个 DAG 拓扑排序，然后按照拓扑序去做。假设遍历到了点 $u$，那么 $u$ 的所有前驱节点已经变成一棵树了。这时我们就可以顺利找到所有前驱节点的 $lca$ 啦。</p>
+<p>​    找到以后呢？找到以后，我们连边，然后更新 $u$ 的祖先节点，$peeeerfect$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">65540</span>; </span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;e[N],e1[N],et[N];</span><br><span class="line"><span class="keyword">int</span> n,de[N],tp[N],tot,d[N],fa[N][<span class="number">29</span>],sz[N]; <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(d[u]&lt;d[v]) swap(u,v);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">20</span>;i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span>(d[fa[u][i]]&gt;=d[v]) u=fa[u][i];</span><br><span class="line">	<span class="keyword">if</span>(u==v) <span class="keyword">return</span> u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">20</span>;i&gt;=<span class="number">0</span>;i--) <span class="keyword">if</span>(fa[u][i]!=fa[v][i]) u=fa[u][i],v=fa[v][i];</span><br><span class="line">	<span class="keyword">return</span> fa[u][<span class="number">0</span>];</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> faa)</span></span>&#123;</span><br><span class="line">	sz[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,v;i&lt;e1[u].size();i++)</span><br><span class="line">		<span class="keyword">if</span>((v=e1[u][i])!=faa) dp(v,u),sz[u]+=sz[v]; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,p;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;p); <span class="keyword">if</span>(!p) <span class="keyword">break</span>;</span><br><span class="line">			et[p].push_back(i),e[i].push_back(p); de[i]++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!de[i]) q.push(i),e[i].push_back(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front(); q.pop(); tp[++tot]=u;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,v;i&lt;et[u].size();i++)&#123;</span><br><span class="line">			de[v=et[u][i]]--; <span class="keyword">if</span>(!de[v]) q.push(v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> u=tp[i]; <span class="keyword">int</span> l=e[u][<span class="number">0</span>]; </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;e[u].size();j++) l=lca(l,e[u][j]);</span><br><span class="line">		e1[l].push_back(u),d[u]=d[l]+<span class="number">1</span>,fa[u][<span class="number">0</span>]=l; <span class="comment">//l做u的支配树父亲 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">15</span>;j++) fa[u][j]=fa[fa[u][j<span class="number">-1</span>]][j<span class="number">-1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	dp(<span class="number">0</span>,<span class="number">-1</span>); <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sz[i]<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/04/08/支配树/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">省选图论题单一些题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/04/08/支配树/", 
+    sourceId: "支配树",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -267,8 +325,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
