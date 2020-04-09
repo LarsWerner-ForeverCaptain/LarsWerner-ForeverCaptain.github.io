@@ -150,6 +150,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-网络流建模" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">网络流建模</a>
+    </h1>
+  
+
+        
+        <a href="2020/04/09/网络流建模/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-09T04:27:35.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最大闭权合子图"><a href="#最大闭权合子图" target="_blank" rel="noopener" class="headerlink" title="最大闭权合子图"></a>最大闭权合子图</h2><h3 id="模型"><a href="#模型" target="_blank" rel="noopener" class="headerlink" title="模型"></a>模型</h3><p>有一些物品，每个物品都有一个收益 $v_i$，物品有限制关系，即选 $x$ 必须选 $y$，(用 $x\to y$ 表示)最大化代价和。</p>
+<h3 id="解决方案"><a href="#解决方案" target="_blank" rel="noopener" class="headerlink" title="解决方案"></a>解决方案</h3><p>最小割。</p>
+<p>每个物品与源点和汇点相连。割掉与源点的边代表不选，割掉与汇点相连的边表示选择这个物品。</p>
+<p>对于一个物品的价值 $v$：</p>
+<p>如果 $v&gt;0$ 则让他和源点相连的边权值为 $v$，与汇点相连的边权值为 $0$，将 $v$ 加入总答案。</p>
+<p>如果 $v&lt;0$ 则让他和源点相连的边权值为 $0$，与汇点相连的边权值为 $-v$。</p>
+<p>对于 $x\to y$ ，转化为 $x$ 向 $y$ 连一条权值为 $\infty$ 的边，显然这样的话可以保证这条边不会被割。</p>
+<p>最后求最大流，然后总答案减去最大流即可。</p>
+<p>于是可以建立这样一个网络流模型。</p>
+<p><img src="http://media.hihocoder.com/problem_images/20161008/14759139777130.jpg" alt="http://media.hihocoder.com/problem_images/20161008/14759139777130.jpg"></p>
+<p>从右边的那个blog借图：<a href="https://www.cnblogs.com/TreeDream/p/5942354.html" target="_blank" rel="noopener">https://www.cnblogs.com/TreeDream/p/5942354.html</a></p>
+<p>其中一个比较主要的建模元素是 <strong>收益不重复</strong>，根据此我们可以去转换成最大闭权和子图</p>
+<h3 id="T1-六省联考2017-寿司餐厅"><a href="#T1-六省联考2017-寿司餐厅" target="_blank" rel="noopener" class="headerlink" title="T1 六省联考2017 寿司餐厅"></a>T1 六省联考2017 寿司餐厅</h3><p>题目链接：<a href="https://loj.ac/problem/2146" target="_blank" rel="noopener">https://loj.ac/problem/2146</a></p>
+<p>参考的题解：<a href="https://www.cnblogs.com/PinkRabbit/p/10422815.html" target="_blank" rel="noopener">https://www.cnblogs.com/PinkRabbit/p/10422815.html</a></p>
+<h4 id="题意简化"><a href="#题意简化" target="_blank" rel="noopener" class="headerlink" title="题意简化"></a>题意简化</h4><p>有 $n$ 种寿司，第 $i$ 种寿司的类型为 $a_i$，如果吃了第 $i$ 到 $j$ 种寿司，会得到 $d_{i,j}$ 的收益。如果吃了 $c$ ($c&gt;0$) 种类型为 $x$ 的寿司，会付出 $mx^2+cx$ 的代价。最大化收益与代价的差。</p>
+<h4 id="模型转换"><a href="#模型转换" target="_blank" rel="noopener" class="headerlink" title="模型转换"></a>模型转换</h4><p>$d_{i,j}$ 转化为一个利益点，那么 $S$ 连向这个点的边权就是 $d_{i,j}$ 。</p>
+<p>$x\to y$ 即，由于选择一段区间 $(l,r)$ 还要选择区间 $(l,r-1),(l+1,r)$，于是 $d_{i,j}$ 指向 $d_{i,j-1},d_{i+1,j}$ </p>
+<p>吃了 $c$ 个类型为 $x$ 的寿司，拆分为 $mx^2$ 和 $c\times x$，也就是说，吃过是 $mx^2$，然后再每多吃一种就是增加 $x$</p>
+<p>同时，我们把每个类型也做为一个物品，代价为 $mx^2$ 表示一旦取了 $d_{i,i}$，就要取这个物品。</p>
+<p>于是转换为了最大闭权和子图问题，可以用 $\texttt{dinic}$ 爆切之。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> optimize(<span class="meta-string">"ofast,unroll-loop"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">109</span>,inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,ix35txdy,a[N],cnt=<span class="number">2</span>,id[N][N],dd[N*N],st,ed;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> to,nxt,c;&#125;e[N*N*<span class="number">4</span>]; <span class="keyword">int</span> hd[N*N],tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c)</span></span>&#123;e[++tot]=(edge)&#123;v,hd[u],c&#125;;hd[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addh</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c)</span></span>&#123;add(u,v,c),add(v,u,<span class="number">0</span>);&#125;</span><br><span class="line"><span class="keyword">int</span> d[N*N],ans,tans;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q; q.push(st); <span class="built_in">memset</span>(d,<span class="number">0</span>,<span class="keyword">sizeof</span>(d)); d[st]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i;i=e[i].nxt)</span><br><span class="line">			<span class="keyword">if</span>(!d[v=e[i].to]&amp;&amp;e[i].c)&#123;</span><br><span class="line">				d[v]=d[u]+<span class="number">1</span>; q.push(v);</span><br><span class="line">				<span class="keyword">if</span>(v==ed) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> flow)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> rest=flow; <span class="keyword">if</span>(u==ed) <span class="keyword">return</span> flow;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i&amp;&amp;rest;i=e[i].nxt)</span><br><span class="line">		<span class="keyword">if</span>(d[v=e[i].to]==d[u]+<span class="number">1</span>&amp;&amp;e[i].c)&#123;</span><br><span class="line">			<span class="keyword">int</span> use=dinic(v,min(rest,e[i].c));</span><br><span class="line">			<span class="keyword">if</span>(!use) d[v]=<span class="number">0</span>;</span><br><span class="line">			rest-=use,e[i].c-=use,e[i^<span class="number">1</span>].c+=use;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> flow-rest;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;a[i],ix35txdy=max(ix35txdy,a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=n;j++)</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;dd[id[i][j]=++cnt];</span><br><span class="line">	st=<span class="number">1</span>,ed=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp=dd[id[i][j]];</span><br><span class="line">			<span class="keyword">if</span>(i==j)&#123;</span><br><span class="line">				<span class="keyword">if</span>(m) addh(id[i][j],cnt+a[i],inf); <span class="comment">//d_ii连向类型点 </span></span><br><span class="line">				tmp-=a[i]; <span class="comment">//d_ii的特殊代价 </span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> addh(id[i][j],id[i][j<span class="number">-1</span>],inf), addh(id[i][j],id[i+<span class="number">1</span>][j],inf);</span><br><span class="line">			<span class="keyword">if</span>(tmp&gt;<span class="number">0</span>) addh(<span class="number">1</span>,id[i][j],tmp),tans+=tmp;</span><br><span class="line">			<span class="keyword">else</span> addh(id[i][j],<span class="number">2</span>,-tmp); <span class="comment">//两种建边情况 </span></span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(m) <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=ix35txdy;i++) addh(cnt+i,<span class="number">2</span>,i*i); <span class="comment">//类型点的代价 </span></span><br><span class="line">	<span class="keyword">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(bfs()) <span class="keyword">while</span>(tmp=dinic(st,inf)) ans+=tmp;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;tans-ans; <span class="comment">//减去最小割 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">戳我看全文~ >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-支配树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
