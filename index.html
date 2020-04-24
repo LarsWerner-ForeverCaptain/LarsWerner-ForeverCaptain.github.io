@@ -150,6 +150,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ZKW最小费用最大流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener">ZKW最小费用最大流</a>
+    </h1>
+  
+
+        
+        <a href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-24T14:10:56.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ZKW-费用流"><a href="#ZKW-费用流" target="_blank" rel="noopener" class="headerlink" title="ZKW 费用流"></a>ZKW 费用流</h1><h2 id="Dinic-最大流"><a href="#Dinic-最大流" target="_blank" rel="noopener" class="headerlink" title="Dinic 最大流"></a>Dinic 最大流</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5009</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> to,nxt,c;&#125;e[N*<span class="number">2</span>]; <span class="keyword">int</span> hd[N],tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c)</span></span>&#123;e[++tot]=(edge)&#123;v,hd[u],c&#125;;hd[u]=tot;&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,s,t,ans,d[N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q; q.push(s); <span class="built_in">memset</span>(d,<span class="number">0</span>,<span class="keyword">sizeof</span>(d)); d[s]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i;i=e[i].nxt)</span><br><span class="line">			<span class="keyword">if</span>(!d[v=e[i].to]&amp;&amp;e[i].c)&#123;</span><br><span class="line">				d[v]=d[u]+<span class="number">1</span>; q.push(v);</span><br><span class="line">				<span class="keyword">if</span>(v==t) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> flow)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> rest=flow; <span class="keyword">if</span>(u==t) <span class="keyword">return</span> flow;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i&amp;&amp;rest;i=e[i].nxt)</span><br><span class="line">		<span class="keyword">if</span>(d[v=e[i].to]==d[u]+<span class="number">1</span>&amp;&amp;e[i].c)&#123;</span><br><span class="line">			<span class="keyword">int</span> use=dinic(v,min(rest,e[i].c));</span><br><span class="line">			<span class="keyword">if</span>(!use) d[v]=<span class="number">0</span>;</span><br><span class="line">			rest-=use,e[i].c-=use,e[i^<span class="number">1</span>].c+=use;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> flow-rest;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,u,v,c;i&lt;=m;i++)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;u&gt;&gt;v&gt;&gt;c,add(u,v,c),add(v,u,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> tmp=<span class="number">0</span>; <span class="keyword">while</span>(bfs()) <span class="keyword">while</span>(tmp=dinic(s,<span class="number">0x3f3f3f3f</span>)) ans+=tmp; </span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>dinic有两个重要的部分：dfs和bfs。dfs （即dinic）是为了计算最短路，bfs 是为了建造分层图，本质就是跑边权为 $1$ 的最短路。</p>
+<h2 id="ZKW-费用流-1"><a href="#ZKW-费用流-1" target="_blank" rel="noopener" class="headerlink" title="ZKW 费用流"></a>ZKW 费用流</h2><p>现在有了费用，我们把 bfs 求最短路换成 spfa 求最短路即可。</p>
+<p>注意几点：</p>
+<p>1 更新时需要加上费用的更新</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rest-=used; e[i].c-=used,e[i^<span class="number">1</span>].c+=used,cost+=used*e[i].w;</span><br></pre></td></tr></table></figure>
+<p>2 加边时反向边费用为 $-w$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addh</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c,<span class="keyword">int</span> w)</span></span>&#123;add(u,v,c,w),add(v,u,<span class="number">0</span>,-w);&#125;</span><br></pre></td></tr></table></figure>
+<p>3 在 dfs 时需要 bool 数组判断这个点是否在 dfs 栈中。如果在，那么就不要再去 dfs 他了。（避免两个点之间流来流去）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!in[v=e[i].to]&amp;&amp;e[i].c&amp;&amp;d[v]==d[u]+e[i].w)&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">9</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> to,nxt,c,w;&#125;e[N*<span class="number">2</span>]; <span class="keyword">int</span> hd[N],tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c,<span class="keyword">int</span> w)</span></span>&#123;e[++tot]=(edge)&#123;v,hd[u],c,w&#125;;hd[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addh</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> c,<span class="keyword">int</span> w)</span></span>&#123;add(u,v,c,w),add(v,u,<span class="number">0</span>,-w);&#125; <span class="comment">//反向边代价为-w </span></span><br><span class="line"><span class="keyword">int</span> n,m,s,t,flow,cost,tmp;</span><br><span class="line"><span class="keyword">int</span> d[N]; <span class="keyword">bool</span> in[N]; </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q; q.push(s); <span class="built_in">memset</span>(d,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(d)); d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front(); q.pop(); in[u]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i;i=e[i].nxt)</span><br><span class="line">			<span class="keyword">if</span>(e[i].c&amp;&amp;d[v=e[i].to]&gt;d[u]+e[i].w)&#123;</span><br><span class="line">				d[v]=d[u]+e[i].w;</span><br><span class="line">				<span class="keyword">if</span>(!in[v]) q.push(v),in[v]=<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> d[t]&lt;=<span class="number">2e18</span>; <span class="comment">//跑完整个spfa </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> flow)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> rest=flow; <span class="keyword">if</span>(u==t) <span class="keyword">return</span> flow; in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=hd[u],v;i&amp;&amp;rest;i=e[i].nxt)</span><br><span class="line">		<span class="keyword">if</span>(!in[v=e[i].to]&amp;&amp;e[i].c&amp;&amp;d[v]==d[u]+e[i].w)&#123;</span><br><span class="line">			<span class="keyword">int</span> used=dinic(v,min(e[i].c,rest));</span><br><span class="line">			<span class="keyword">if</span>(!used) d[v]=<span class="number">-1</span>;</span><br><span class="line">			rest-=used; e[i].c-=used,e[i^<span class="number">1</span>].c+=used,cost+=used*e[i].w; <span class="comment">//更新费用 </span></span><br><span class="line">		&#125;</span><br><span class="line">	in[u]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> flow-rest;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;m); s=<span class="number">1</span>,t=n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,u,v,c,w;i&lt;=m;i++) <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld"</span>,&amp;u,&amp;v,&amp;c,&amp;w),addh(u,v,c,w);</span><br><span class="line">	<span class="keyword">while</span>(spfa()) <span class="keyword">while</span>(tmp=dinic(s,<span class="number">0x3f3f3f3f3f3f3f3f</span>)) flow+=tmp;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld %lld\n"</span>,flow,cost);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener">戳我看全文~ >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-网络流建模" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -302,7 +375,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.luogu.com.cn/training/2965" target="_blank" rel="noopener">题单传送门</a></p>
+        <h2 id="【图论】省选图论真题"><a href="#【图论】省选图论真题" target="_blank" rel="noopener" class="headerlink" title="【图论】省选图论真题"></a>【图论】省选图论真题</h2><p><a href="https://www.luogu.com.cn/training/2965" target="_blank" rel="noopener">https://www.luogu.com.cn/training/2965</a></p>
         
           <a class="article-more-a" href="2020/04/07/省选图论题单一些题解/#more" target="_blank" rel="noopener">more >></a>
         
@@ -715,137 +788,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="2020/03/04/好文章/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-test2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/04/test2/" target="_blank" rel="noopener">test2</a>
-    </h1>
-  
-
-        
-        <a href="2020/03/04/test2/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-04T05:42:40.618Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>a second test to test the picture</p>
-        
-          <a class="article-more-a" href="2020/03/04/test2/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/04/test2/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/03/test/" target="_blank" rel="noopener">test</a>
-    </h1>
-  
-
-        
-        <a href="2020/03/03/test/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-03T06:00:10.054Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This is just a test to put my blogs on this github page.  </p>
-<p>试验能否成功  </p>
-        
-          <a class="article-more-a" href="2020/03/03/test/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/03/test/" target="_blank" rel="noopener">戳我看全文~ >></a>
         </p>
       
 
