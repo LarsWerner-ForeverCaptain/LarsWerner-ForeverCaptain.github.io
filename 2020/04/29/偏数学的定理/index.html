@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>blog of konjac LsWn</title>
+  <title>偏数学的定理 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="index.html">
+  <meta name="description" content="OI中一些数学知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="偏数学的定理">
+<meta property="og:url" content="2020/04/29/%E5%81%8F%E6%95%B0%E5%AD%A6%E7%9A%84%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="OI中一些数学知识">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-29T10:29:52.804Z">
+<meta property="article:modified_time" content="2020-04-29T11:46:58.856Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,16 +150,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-偏数学的定理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-偏数学的定理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener">偏数学的定理</a>
+    <h1 class="article-title" itemprop="name">
+      偏数学的定理
     </h1>
   
 
@@ -171,9 +171,29 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>OI中一些数学知识</p>
-        
-          <a class="article-more-a" href="2020/04/29/偏数学的定理/#more" target="_blank" rel="noopener">more >></a>
-        
+<a id="more"></a>
+<h2 id="Polya-定理-（置换群）"><a href="#Polya-定理-（置换群）" target="_blank" rel="noopener" class="headerlink" title="Polya 定理 （置换群）"></a>Polya 定理 （置换群）</h2><h3 id="置换定义"><a href="#置换定义" target="_blank" rel="noopener" class="headerlink" title="置换定义"></a>置换定义</h3><p>集合 $S={a_1,a_2,…,a_n}$ 上的置换表示为</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} a_1,a_2,...a_n \\ a_{p_1},a_{p_2},...,a_{p_n} \end{pmatrix}</script><p>代表将 $a_i$ 转换为 $a_{p_i}$。</p>
+<h3 id="置换乘法"><a href="#置换乘法" target="_blank" rel="noopener" class="headerlink" title="置换乘法"></a>置换乘法</h3><script type="math/tex; mode=display">
+f=\begin{pmatrix} a_1,a_2,...a_n \\ a_{p_1},a_{p_2},...,a_{p_n} \end{pmatrix}\\
+g=\begin{pmatrix} a_{p_1},a_{p_2},...a_{p_n} \\ a_{q_1},a_{q_2},...,a_{q_n} \end{pmatrix}\\
+f\times q=\begin{pmatrix} a_1,a_2,...a_n \\ a_{q_1},a_{q_2},...,a_{q_n} \end{pmatrix}</script><p>若不是上述形式，将 $g$ 转化为上述形式即可。</p>
+<h3 id="循环置换"><a href="#循环置换" target="_blank" rel="noopener" class="headerlink" title="循环置换"></a>循环置换</h3><p>循环置换为</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} a_1,a_2,...a_n \\ a_2,a_3,...,a_1 \end{pmatrix}</script><p>循环置换可以分解成若干不相交的循环置换的乘积。</p>
+<h3 id="置换快速幂"><a href="#置换快速幂" target="_blank" rel="noopener" class="headerlink" title="置换快速幂"></a>置换快速幂</h3><p>一个置换可以拆分成若干个循环置换。循环置换的快速幂是 $O(n)$ 的，也就是置换快速幂是线性的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">	<span class="keyword">if</span>(vst[i]) <span class="keyword">continue</span>; <span class="keyword">int</span> tot=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(;!vst[i];i=a[i]) vst[i]=<span class="number">1</span>,tmp[++tot]=i; <span class="keyword">int</span> c=k%tot; <span class="comment">//拆成循环置换</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;++i) ans[tmp[i]]=tmp[(i+c)&gt;tot?(i+c)-tot:(i+c)]; <span class="comment">//循环置换的k次方</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="群-amp-置换群"><a href="#群-amp-置换群" target="_blank" rel="noopener" class="headerlink" title="群&amp;置换群"></a>群&amp;置换群</h3><p>若集合 $S$ 上的运算 $·$ 构成的 $(S,·)$ 满足封闭性，结合律，单位元和逆元，那么称 $(S,·)$ 为一个群。</p>
+<p>集合 $S$ 上所有置换关于置换的乘法满足以上条件。这个群的任意一个子群称为置换群。</p>
+<h3 id="Polya"><a href="#Polya" target="_blank" rel="noopener" class="headerlink" title="Polya"></a>Polya</h3><p>排列组合中 $m^n$ 种方案在置换群 $G$ 下分为两两等价的若干分组，称为置换群 $G$ 下的等价类，组数为 $L$。</p>
+<p>定义 $g$ 为 $G$ 中的一个循环节，$c(g)$ 为循环节数，$|G|$ 为 $G$ 的大小。</p>
+<p>Polya 定理为：</p>
+<script type="math/tex; mode=display">
+L=\frac{1}{|G|}\sum\limits_{g\in G}m^{c(g)}</script><p>例题：</p>
+<p><a href="https://www.luogu.com.cn/problem/P4980" target="_blank" rel="noopener">【模板】Polya定理</a></p>
+<p><a href="https://www.luogu.com.cn/problem/P2561" target="_blank" rel="noopener">[AHOI2002]黑白瓷砖</a></p>
+
       
 
       
@@ -184,544 +204,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ZKW最小费用最大流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener">ZKW最小费用最大流</a>
-    </h1>
-  
-
-        
-        <a href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-24T14:10:56.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ZKW-费用流"><a href="#ZKW-费用流" target="_blank" rel="noopener" class="headerlink" title="ZKW 费用流"></a>ZKW 费用流</h1>
-        
-          <a class="article-more-a" href="2020/04/24/ZKW最小费用最大流/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+      </div>
+    </span>
   </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-网络流建模" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">网络流建模</a>
-    </h1>
-  
-
-        
-        <a href="2020/04/09/网络流建模/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-09T04:27:35.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网络流算法"><a href="#网络流算法" target="_blank" rel="noopener" class="headerlink" title="网络流算法"></a>网络流算法</h1><p><strong>摘要</strong>：网络流算法是省选中最常见的算法之一。网络流题往往需要套路极深的建模，然后推导到网络流的算法。建模，便是网络流的核心部分。本博客给出网络流相关算法的代码以及建模方法（其实主要就是我的刷题笔记）。</p>
-        
-          <a class="article-more-a" href="2020/04/09/网络流建模/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-支配树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/08/支配树/" target="_blank" rel="noopener">支配树</a>
-    </h1>
-  
-
-        
-        <a href="2020/04/08/支配树/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-08T04:25:31.941Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="支配树"><a href="#支配树" target="_blank" rel="noopener" class="headerlink" title="支配树"></a>支配树</h1><h4 id="目录："><a href="#目录：" target="_blank" rel="noopener" class="headerlink" title="目录："></a>目录：</h4><pre><code>1. DAG 的支配树问题
- 2. 有向图的支配树问题
-</code></pre>
-        
-          <a class="article-more-a" href="2020/04/08/支配树/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/08/支配树/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-省选图论题单一些题解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
-    </h1>
-  
-
-        
-        <a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="【图论】省选图论真题"><a href="#【图论】省选图论真题" target="_blank" rel="noopener" class="headerlink" title="【图论】省选图论真题"></a>【图论】省选图论真题</h2><p><a href="https://www.luogu.com.cn/training/2965" target="_blank" rel="noopener">https://www.luogu.com.cn/training/2965</a></p>
-        
-          <a class="article-more-a" href="2020/04/07/省选图论题单一些题解/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-导数笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
-  
-
-        
-        <a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="导数-笔记"><a href="#导数-笔记" target="_blank" rel="noopener" class="headerlink" title="导数 笔记"></a>导数 笔记</h1><p>导数笔记</p>
-        
-          <a class="article-more-a" href="2020/04/03/导数笔记/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-30分钟dinic挑战失败有感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener">30分钟dinic挑战失败有感</a>
-    </h1>
-  
-
-        
-        <a href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-27T02:57:33.722Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>准备30分钟切网络流模板，结果失败了qwq，于是写一篇网络流有感。</p>
-        
-          <a class="article-more-a" href="2020/03/27/30分钟dinic挑战失败有感/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-任务计划列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/15/任务计划列表/" target="_blank" rel="noopener">任务计划列表</a>
-    </h1>
-  
-
-        
-        <a href="2020/03/15/任务计划列表/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-15T08:06:25.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div class="table-container">
-<table>
-<thead>
-<tr>
-<th>算法</th>
-<th>理论</th>
-<th>题目</th>
-<th>进度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Trie进阶</td>
-<td>01Trie<br>可持久化<br>Trie DP</td>
-<td>P5283异或粽子</td>
-<td>0</td>
-</tr>
-<tr>
-<td>网络流</td>
-<td>费用流<br>建模（见文章）</td>
-<td>网络流24题</td>
-<td>0</td>
-</tr>
-<tr>
-<td>并查集</td>
-<td>带权并查集<br>并查集建模</td>
-<td>P2024食物链</td>
-<td>0</td>
-</tr>
-<tr>
-<td>A*</td>
-<td>K-short</td>
-<td>P2483魔法猪学院</td>
-<td>60</td>
-</tr>
-<tr>
-<td>Splay</td>
-<td>Splay<br>LCT</td>
-<td></td>
-<td>0</td>
-</tr>
-<tr>
-<td>谔分图</td>
-<td>谔分图匹配<br>带权匹配<br>建模</td>
-<td></td>
-<td>0</td>
-</tr>
-<tr>
-<td>虚树</td>
-<td>虚树</td>
-<td>P2495消耗战</td>
-<td>0</td>
-</tr>
-<tr>
-<td>树剖进阶</td>
-<td>树剖建模</td>
-<td></td>
-<td>0</td>
-</tr>
-<tr>
-<td>树形dp进阶</td>
-<td>树形dp进阶</td>
-<td></td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
 </div>
-<!--戳我看全文-->
-<p>目前想专攻图论，希望能在图论上有长处。</p>
-<p>至于那个要死的数据结构，稍微学点辅助图论吧（比如lct。</p>
-<p>数学？不存在的。多项式？<del>不会磕多项式的</del>。</p>
-<p>字符串：反正字符串有些也要转到图论问题去做的，那就顺便练练建模吧。</p>
-<h3 id="要连的模板："><a href="#要连的模板：" target="_blank" rel="noopener" class="headerlink" title="要连的模板："></a>要连的模板：</h3><p>Dinic，SPFA 负环，匈牙利，基环树，tarjan强连通分量缩点，tarjan割点割边双连通，树剖线段树，</p>
 
-      
-
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/04/29/偏数学的定理/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+</div>
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/15/任务计划列表/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ZKW最小费用最大流</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -741,139 +292,25 @@
 
 
 
-
   
-    <article id="post-常用建模解法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/06/常用建模解法/" target="_blank" rel="noopener">常用建模解法</a>
-    </h1>
   
-
-        
-        <a href="2020/03/06/常用建模解法/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-06T02:20:53.682Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一些比较常用的建模解法"><a href="#一些比较常用的建模解法" target="_blank" rel="noopener" class="headerlink" title="一些比较常用的建模解法"></a>一些比较常用的建模解法</h1><p><img src="https://public.noi.top/image/1583461404616.png" alt=""></p>
-        
-          <a class="article-more-a" href="2020/03/06/常用建模解法/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/06/常用建模解法/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-好文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/03/04/好文章/" target="_blank" rel="noopener">好文章</a>
-    </h1>
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/04/29/偏数学的定理/", 
+    sourceId: "偏数学的定理",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        
-        <a href="2020/03/04/好文章/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-04T05:55:57.841Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一些我找到的但是还没时间看的好文章</strong></p>
-<p><img src="https://public.noi.top/image/1583302112678.png" alt="image.png"></p>
-        
-          <a class="article-more-a" href="2020/03/04/好文章/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/03/04/好文章/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -896,8 +333,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -16,7 +16,7 @@
 <meta property="og:description" content="导数 笔记导数笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-03T02:19:18.643Z">
-<meta property="article:modified_time" content="2020-04-03T02:19:42.302Z">
+<meta property="article:modified_time" content="2020-05-01T08:00:28.541Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -186,7 +186,30 @@ f(x)=\log_ax\quad f'(x)=\frac{1}{x\ln a}\\
 f(x)=\ln x\quad f'(x)=\frac{1}{x}</script><h4 id="导数运算"><a href="#导数运算" target="_blank" rel="noopener" class="headerlink" title="导数运算"></a>导数运算</h4><script type="math/tex; mode=display">
 [f(x)± g(x)]'=f'(x) ± g'(x)</script><script type="math/tex; mode=display">
 [f(x) g(x)]'=f'(x) g(x) + f(x) g'(x)</script><script type="math/tex; mode=display">
-[\frac{f(x)}{g(x)}]' = \frac{f'(x)g(x)-f(x)g'(x)}{[g(x)^2]}</script>
+[\frac{f(x)}{g(x)}]' = \frac{f'(x)g(x)-f(x)g'(x)}{[g(x)^2]}</script><h2 id="K2"><a href="#K2" target="_blank" rel="noopener" class="headerlink" title="K2"></a>K2</h2><h4 id="复合函数求导"><a href="#复合函数求导" target="_blank" rel="noopener" class="headerlink" title="复合函数求导"></a>复合函数求导</h4><script type="math/tex; mode=display">
+y=f(u),u=g(x) \quad\quad y=f(g(x))\\
+y'_x=y'_u\times u'_x \quad\quad [f(g(x))]'=f'(g(x))\times g(</script><p>例1</p>
+<script type="math/tex; mode=display">
+y=(1-2x^2)^{-\frac{1}{2}}\\
+y'=(u^{-\frac{1}{2}}\times(1-2x^2))\\
+  =-\frac{1}{2}\times u^{-\frac{3}{2}}\times (-4x)\\
+  =-\frac{1}{2}\times (1-2^x)^{-\frac{3}{2}}\times (-4x)\\
+  =2x(1-2x^2)^{-\frac{3}{2}}</script><p>例2</p>
+<script type="math/tex; mode=display">
+y=sin^2(2x+\frac{\pi}{3})\\
+令 y=u^2, u=\sin v, v=2x+\frac{\pi}{3}\\
+y'_x=y'_u\times u'_v\times v'_x\\
+=2u\times \cos v\times 2\\
+= 4\sin v\cos v 
+= 2\sin 2v（重要的三角函数公式）\\
+=2\sin (4x+\frac{2\pi}{3})</script><h4 id="函数单调性"><a href="#函数单调性" target="_blank" rel="noopener" class="headerlink" title="函数单调性"></a>函数单调性</h4><script type="math/tex; mode=display">
+y=f(x) 在区间 (a,b) 内 f'(x)>0，则在区间 (a,b) 中单调递增\\
+y=f(x) 在区间 (a,b) 内 f'(x)<0，则在区间 (a,b) 中单调递减</script><p>例1</p>
+<script type="math/tex; mode=display">
+求 f(x)=2x-\ln x的单调区间\\
+定义域为 (0,+\infty)\\
+f'(x)=2-\frac{1}{x}>0 \to x>\frac{1}{2}时单调递增\\
+f'(x)<0\to 0<x<\frac{1}{2} 时单调递减</script>
       
 
       
