@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives | blog of konjac LsWn</title>
+  <title>莫比乌斯反演 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/index.html">
+  <meta name="description" content="莫比乌斯反演积性函数 定义  $\gcd (x,y)&#x3D;1$ 且 $f(xy)&#x3D;f(x)f(y)$，则 $f(n)$ 为积性函数。  性质  若 $f(x),g(x)$ 为积性函数，那么  h(x)&#x3D;f(x^p)\\h(x)&#x3D;f^p(x)\\h(x)&#x3D;f(x)g(x)\\h(x)&#x3D;\sum_{d|x}f(d)g(\frac{x}{d})也为积性函数  例子   单位函数 $e(x)$ 恒等函数 $i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫比乌斯反演">
+<meta property="og:url" content="2020/05/14/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="莫比乌斯反演积性函数 定义  $\gcd (x,y)&#x3D;1$ 且 $f(xy)&#x3D;f(x)f(y)$，则 $f(n)$ 为积性函数。  性质  若 $f(x),g(x)$ 为积性函数，那么  h(x)&#x3D;f(x^p)\\h(x)&#x3D;f^p(x)\\h(x)&#x3D;f(x)g(x)\\h(x)&#x3D;\sum_{d|x}f(d)g(\frac{x}{d})也为积性函数  例子   单位函数 $e(x)$ 恒等函数 $i">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-14T14:57:42.698Z">
+<meta property="article:modified_time" content="2020-05-15T02:24:22.776Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,295 +150,227 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-莫比乌斯反演" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      莫比乌斯反演
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener" class="archive-article-date">
+
+        
+        <a href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener" class="archive-article-date">
   	<time datetime="2020-05-14T14:57:42.698Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener">莫比乌斯反演</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="莫比乌斯反演"><a href="#莫比乌斯反演" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h1><h3 id="积性函数"><a href="#积性函数" target="_blank" rel="noopener" class="headerlink" title="积性函数"></a>积性函数</h3><ol>
+<li><strong>定义</strong></li>
+</ol>
+<p>$\gcd (x,y)=1$ 且 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。</p>
+<ol>
+<li><strong>性质</strong></li>
+</ol>
+<p>若 $f(x),g(x)$ 为积性函数，那么</p>
+<script type="math/tex; mode=display">
+h(x)=f(x^p)\\h(x)=f^p(x)\\h(x)=f(x)g(x)\\h(x)=\sum_{d|x}f(d)g(\frac{x}{d})</script><p>也为积性函数</p>
+<ol>
+<li><strong>例子</strong></li>
+</ol>
+<ul>
+<li>单位函数 $e(x)$</li>
+<li>恒等函数 $id(x)$</li>
+<li>常数函数 $1(x)$</li>
+<li>除数函数 $\sigma_k(n)=\sum_{d|n}d^k\sigma_0(n)$</li>
+<li>欧拉函数 $\varphi (n)=\sum_{i=1}^{n}[\gcd (i,n)=1]$</li>
+<li>莫比乌斯函数 $\mu (n)$</li>
+</ul>
+<p>所有积性函数都可以通过线性筛去筛出来。</p>
+<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><p><strong>定义式</strong></p>
+<script type="math/tex; mode=display">
+\mu(x)=\begin{cases}1& (x=1)\\0& (\exist d:d^2\mid n)\\(-1)^k & (x=p_1p_2p_3...p_k)\end{cases}</script><p><strong>计算方法</strong></p>
+<p>$O(n)$ 批量计算</p>
+<p>线性筛筛质数，筛到 $k=x\times  p$ 时</p>
+<script type="math/tex; mode=display">
+\mu(k)=\begin{cases}0& (p\mid x,即p^2\mid k)\\± u_x& (p\nmid x)\end{cases}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mobius</span><span class="params">()</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vst[i]) pr[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;i*pr[j]&lt;=n;j++)&#123;</span><br><span class="line">			vst[i*pr[j]]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pr[j]==<span class="number">0</span>)&#123;mu[i*pr[j]]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">else</span> mu[i*pr[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(\sqrt n)$ 单个计算</p>
+<p>对 $1$ 到 $\sqrt{n}$ 做线性筛，由于大于 $\sqrt{n}$  的质因数最多只有一个，所以最后判断一下即可。</p>
+<p><strong>性质</strong></p>
+<script type="math/tex; mode=display">
+\sum_{d|n} {\mu(d)}=\begin{cases}1& (n=1)\\0 (n>1)\end{cases}</script><h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>对于函数 $f(x)$，设 $g(x)=\sum_{x\mid d }f(d)$ ，d则有</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{x\mid d}\mu (\frac{d}{x})g(d)</script><p>也有，</p>
+<script type="math/tex; mode=display">
+[n\mid m]\sum_{d\mid \frac{n}{m}}\mu(d)=[n=m]</script><h3 id="题目（收集自各大博客）"><a href="#题目（收集自各大博客）" target="_blank" rel="noopener" class="headerlink" title="题目（收集自各大博客）"></a>题目（收集自各大博客）</h3><blockquote>
+<p>T1 求<script type="math/tex">f(1)=\sum_{i=1}^n\sum_{j=1}^m[\gcd(i,j)=1]</script></p>
+</blockquote>
+<p><strong>解法一</strong></p>
+<p>看到后面那个式子可以想到莫比乌斯反演中提到的第二个公式，$n=\gcd(i,j),m=1$，于是进行变形</p>
+<script type="math/tex; mode=display">
+ys=\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d\mid \gcd(i,j)}{\mu(d)}</script><p>看到第三个求和的条件 $d\mid \gcd(i,j)$，可以转换为 $d\mid i,d\mid j$</p>
+<script type="math/tex; mode=display">
+ys=\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d\mid i,d\mid j}\mu(d)</script><p>我们看到最难受的最后一个求和，想把它移到前面去，需要确定范围 $d\in [1,\min(n,m)]$</p>
+<p>然后对于后面两个求和的范围，我们看到，既然 $d$ 已定，$d$ 一定是 $i,j$ 的约数，那么 $i,j$ 一定是 $d$ 的倍数</p>
+<script type="math/tex; mode=display">
+ys=\sum_{d=1}^{\min(n,m)}\sum_{d\mid i}^{n}\sum_{d\mid j}^{m}\mu (d)</script><p>把 $\mu$ 移到前面去</p>
+<script type="math/tex; mode=display">
+ys=\sum_{d=1}^{\min(n,m)}\mu(d)\sum_{d\mid i}^{n}\sum_{d\mid j}^{m}1</script><p>然后化简最后的两个求和</p>
+<script type="math/tex; mode=display">
+ys=\sum_{d=1}^{\min(n,m)}\mu(d)\lfloor\frac{n}{d}\rfloor\lfloor\frac{m}{d}\rfloor</script><p>可以 $O(n)$ 解决。</p>
+<p>多组的话也可以线性筛去预处理，然后后面整除分块+前缀和解决。</p>
+<p><strong>解法二</strong></p>
+<p>设 $f(x)=\sum_{i=1}^{n}\sum_{j=1}^{m}[\gcd(i,j)=x],\quad g(x)=\sum_{x\mid d}f(d)$</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{x\mid d}g(d)\mu(\frac{d}{x})\\
+f(1)=\sum_{d=1}^{n}g(d)\mu(d)</script><p>然后计算 $g(d)$</p>
+<script type="math/tex; mode=display">
+g(x)=\sum_{i=1}^{n}\sum_{j=1}^{m} [x\mid \gcd(i,j)]\\
+=\sum_{i=1}^{n/x}\sum_{j=1}^{m/x}1</script><p>带入+整除分块即可</p>
+<blockquote>
+<p>T2 【<a href="https://www.luogu.com.cn/problem/P3455" target="_blank" rel="noopener">[POI2007]ZAP-Queries</a>】求$f(x)=\sum_{i=1}^n\sum_{j=1}^m[\gcd(i,j)=x]$</p>
+</blockquote>
+<p>这是一个比较基础的转变。如果 $i,j$ 都除以 $x$，那么 $\gcd$ 也除以 $x$。</p>
+<script type="math/tex; mode=display">
+ys=\sum_{i=1}^{\lfloor\frac{n}{x}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{x}\rfloor} [\gcd(i,j)=1]\\
+=\sum_{d=1}^{\min(\lfloor\frac{n}{x}\rfloor,\lfloor\frac{n}{x}\rfloor)}\mu(d)\lfloor\frac{n}{xd}\rfloor\lfloor\frac{m}{xd}\rfloor</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xxs</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vst[i]) pr[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;i*pr[j]&lt;=n;j++)&#123;</span><br><span class="line">			vst[i*pr[j]]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pr[j]==<span class="number">0</span>)&#123;mu[i*pr[j]]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">            mu[i*pr[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) s[i]=s[i<span class="number">-1</span>]+mu[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T; <span class="built_in">cin</span>&gt;&gt;T; xxs(<span class="number">500000</span>);</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		<span class="keyword">int</span> n,m,d; <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;d);</span><br><span class="line">		n/=d,m/=d; <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=min(n,m);l=r+<span class="number">1</span>)&#123;</span><br><span class="line">			r=min(n/(n/l),m/(m/l));</span><br><span class="line">			ans+=<span class="number">1l</span>l*(n/l)*(m/l)*(s[r]-s[l<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>T3 【<a href="https://www.luogu.com.cn/problem/P2257" target="_blank" rel="noopener">YY的GCD</a>】求 $\sum_{i=1}^{n}\sum_{j=1}^{m}[\gcd(i,j)\in prime ]$</p>
+</blockquote>
+<p>用莫比乌斯函数性质可得（或者定理提到的第二个东西）</p>
+<script type="math/tex; mode=display">
+ys=\sum_{k=1}^{n}[k\in prime]\sum_{i=1}^{[\frac{n}{k}]}\sum_{j=1}^{[\frac{m}{k}]}[1=gcd(i,j)]\\
+=\sum_{k=1}^{n}[k\in prime]\sum_{i=1}^{[\frac{n}{k}]}\sum_{j=1}^{[\frac{m}{k}]}\sum_{d\mid gcd(i,j)}{\mu(d)}\\
+=\sum_{k=1}^{n}[k\in prime]\sum_{d=1}^{\min(\frac{n}{k},\frac{m}{k})}\mu(d)\sum_{i=1}^{[\frac{n}{kd}]}\sum_{j=1}^{[\frac{m}{kd}]} 1\\
+=\sum_{k=1}^{n}[k\in prime]\sum_{d=1}^{\min(\frac{n}{k},\frac{m}{k})}\mu(d)\lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor</script><p>然后会 TLE</p>
+<p>显然罪魁祸首是这个 $k$，我们希望这个关于 $k$ 的东西可以放到后面然后预计算。</p>
+<p>我们枚举的是 $k$ 和 $d$，我们考虑令 $t=kd$，然后移到前面去于是有</p>
+<script type="math/tex; mode=display">
+ys=\sum_{t=1}^{\min(n,m)}\lfloor\frac{n}{t}\rfloor\lfloor\frac{m}{t}\rfloor\sum_{k\mid t,k\in prime}\mu(\frac{t}{k})</script><p>后面的显然可以预计算。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e7</span>+<span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> pr[N],cnt,mu[N],f[N],s[N]; <span class="keyword">bool</span> vst[N];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xxs</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vst[i]) pr[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;i*pr[j]&lt;=n;j++)&#123;</span><br><span class="line">			vst[i*pr[j]]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pr[j]==<span class="number">0</span>)&#123;mu[i*pr[j]]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">            mu[i*pr[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;pr[i]*j&lt;=n;j++) f[j*pr[i]]+=mu[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) s[i]=s[i<span class="number">-1</span>]+f[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T; <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">	xxs(<span class="number">10000000</span>);</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		<span class="keyword">int</span> n,m; <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=min(n,m);l=r+<span class="number">1</span>)&#123;</span><br><span class="line">			r=min(n/(n/l),m/(m/l));</span><br><span class="line">			ans+=<span class="number">1l</span>l*(n/l)*(m/l)*(s[r]-s[l<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/05/14/莫比乌斯反演/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-29T10:29:52.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">偏数学的定理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener">偏数学的定理</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/05/14/莫比乌斯反演/", 
+    sourceId: "莫比乌斯反演",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-24T14:10:56.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener">ZKW最小费用最大流</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/09/网络流建模/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-09T04:27:35.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">网络流建模</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/08/支配树/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-08T04:25:31.941Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/08/支配树/" target="_blank" rel="noopener">支配树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-27T02:57:33.722Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/27/30分钟dinic挑战失败有感/" target="_blank" rel="noopener">30分钟dinic挑战失败有感</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/15/任务计划列表/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-15T08:06:25.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/15/任务计划列表/" target="_blank" rel="noopener">任务计划列表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/03/06/常用建模解法/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-03-06T02:20:53.682Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/03/06/常用建模解法/" target="_blank" rel="noopener">常用建模解法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="archives/page/2/" target="_blank" rel="noopener">2</a><a class="extend next" rel="next noopener" href="archives/page/2/" target="_blank">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +394,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

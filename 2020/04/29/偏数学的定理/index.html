@@ -16,7 +16,7 @@
 <meta property="og:description" content="OI中一些数学知识">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-29T10:29:52.804Z">
-<meta property="article:modified_time" content="2020-04-29T11:46:58.856Z">
+<meta property="article:modified_time" content="2020-05-14T14:57:47.033Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -172,7 +172,7 @@
       
         <p>OI中一些数学知识</p>
 <a id="more"></a>
-<h2 id="Polya-定理-（置换群）"><a href="#Polya-定理-（置换群）" target="_blank" rel="noopener" class="headerlink" title="Polya 定理 （置换群）"></a>Polya 定理 （置换群）</h2><h3 id="置换定义"><a href="#置换定义" target="_blank" rel="noopener" class="headerlink" title="置换定义"></a>置换定义</h3><p>集合 $S={a_1,a_2,…,a_n}$ 上的置换表示为</p>
+<h1 id="Polya-定理-（置换群）"><a href="#Polya-定理-（置换群）" target="_blank" rel="noopener" class="headerlink" title="Polya 定理 （置换群）"></a>Polya 定理 （置换群）</h1><h3 id="置换定义"><a href="#置换定义" target="_blank" rel="noopener" class="headerlink" title="置换定义"></a>置换定义</h3><p>集合 $S={a_1,a_2,…,a_n}$ 上的置换表示为</p>
 <script type="math/tex; mode=display">
 \begin{pmatrix} a_1,a_2,...a_n \\ a_{p_1},a_{p_2},...,a_{p_n} \end{pmatrix}</script><p>代表将 $a_i$ 转换为 $a_{p_i}$。</p>
 <h3 id="置换乘法"><a href="#置换乘法" target="_blank" rel="noopener" class="headerlink" title="置换乘法"></a>置换乘法</h3><script type="math/tex; mode=display">
@@ -193,7 +193,61 @@ f\times q=\begin{pmatrix} a_1,a_2,...a_n \\ a_{q_1},a_{q_2},...,a_{q_n} \end{pma
 L=\frac{1}{|G|}\sum\limits_{g\in G}m^{c(g)}</script><p>例题：</p>
 <p><a href="https://www.luogu.com.cn/problem/P4980" target="_blank" rel="noopener">【模板】Polya定理</a></p>
 <p><a href="https://www.luogu.com.cn/problem/P2561" target="_blank" rel="noopener">[AHOI2002]黑白瓷砖</a></p>
-
+<h1 id="莫比乌斯反演"><a href="#莫比乌斯反演" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h1><h3 id="积性函数"><a href="#积性函数" target="_blank" rel="noopener" class="headerlink" title="积性函数"></a>积性函数</h3><ol>
+<li><strong>定义</strong></li>
+</ol>
+<p>$\gcd (x,y)=1$ 且 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。</p>
+<ol>
+<li><strong>性质</strong></li>
+</ol>
+<p>若 $f(x),g(x)$ 为积性函数，那么</p>
+<script type="math/tex; mode=display">
+h(x)=f(x^p)\\
+h(x)=f^p(x)\\
+h(x)=f(x)g(x)\\
+h(x)=\sum_{d|x}f(d)g(\frac{x}{d})</script><p>也为积性函数</p>
+<ol>
+<li><strong>例子</strong></li>
+</ol>
+<ul>
+<li>单位函数 $e(x)$</li>
+<li>恒等函数 $id(x)$</li>
+<li>常数函数 $1(x)$</li>
+<li>除数函数 $\sigma_k(n)=\sum_{d|n}d^k\sigma_0(n)$</li>
+<li>欧拉函数 $\varphi (n)=\sum_{i=1}^{n}[\gcd (i,n)=1]$</li>
+<li>莫比乌斯函数 $\mu (n)$</li>
+</ul>
+<p>所有积性函数都可以通过线性筛去筛出来。</p>
+<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><p><strong>定义式</strong></p>
+<script type="math/tex; mode=display">
+\mu(x)=\begin{cases}
+1& (x=1)\\
+0& (\exist d:d^2\mid n)\\
+(-1)^k & (x=p_1p_2p_3...p_k)
+\end{cases}</script><p><strong>计算方法</strong></p>
+<p>$O(n)$ 批量计算</p>
+<p>线性筛筛质数，筛到 $k=x\times  p$ 时</p>
+<script type="math/tex; mode=display">
+\mu(k)=\begin{cases}
+0& (p\mid x,即p^2\mid k)\\
+± u_x& (p\nmid x)
+\end{cases}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mobius</span><span class="params">()</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vst[i]) pr[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;i*pr[j]&lt;=n;j++)&#123;</span><br><span class="line">			vst[i*pr[j]]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pr[j]==<span class="number">0</span>)&#123;mu[i*pr[j]]=<span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">else</span> mu[i*pr[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(\sqrt n)$ 单个计算</p>
+<p>对 $1$ 到 $\sqrt{n}$ 做线性筛，由于大于 $\sqrt{n}$  的质因数最多只有一个，所以最后判断一下即可。</p>
+<p><strong>性质</strong></p>
+<script type="math/tex; mode=display">
+\sum_{d|n} {\mu(d)}=
+\begin{cases}
+1& (n=1)\\
+0 (n>1)
+\end{cases}</script><h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" target="_blank" rel="noopener" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>对于函数 $f(x)$，设 $g(x)=\sum_{x\mid d}f(d)$ ，则有</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{x\mid d}\mu (\frac{d}{x})g(d)</script><h3 id="题目（收集自各大博客）"><a href="#题目（收集自各大博客）" target="_blank" rel="noopener" class="headerlink" title="题目（收集自各大博客）"></a>题目（收集自各大博客）</h3><blockquote>
+<p>T1 求<script type="math/tex">f(x)=\sum_{i=1}^n\sum_{j=1}^m[gcd(i,j)=1]</script></p>
+</blockquote>
+<p>设 $g(x)=\sum_{x\mid d}{f(d)}$</p>
+<script type="math/tex; mode=display">
+f(1)=\sum_{1\mid d}{\mu(\frac{d}{1})g(d)}=\sum_{i=1}^{n}{\mu(i)g(i)}</script>
       
 
       
@@ -264,6 +318,15 @@ L=\frac{1}{|G|}\sum\limits_{g\in G}m^{c(g)}</script><p>例题：</p>
 
   
 <nav id="article-nav">
+  
+    <a href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          莫比乌斯反演
+        
+      </div>
+    </a>
   
   
     <a href="2020/04/24/ZKW最小费用最大流/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
@@ -557,21 +620,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
