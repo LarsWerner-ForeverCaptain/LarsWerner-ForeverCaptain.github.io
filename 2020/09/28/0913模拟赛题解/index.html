@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives: 2020/9 | blog of konjac LsWn</title>
+  <title>0913模拟赛题解 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/2020/09/index.html">
+  <meta name="description" content="Test12 contest20200913">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0913模拟赛题解">
+<meta property="og:url" content="2020/09/28/0913%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="Test12 contest20200913">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-27T22:29:33.177Z">
+<meta property="article:modified_time" content="2020-09-28T11:24:37.068Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,103 +150,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-0913模拟赛题解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/28/【题解】LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-28T12:46:11.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/28/【题解】LG3621 [APIO2007]风铃/" target="_blank" rel="noopener">【题解】LG3621 [APIO2007]风铃</a>
+    <h1 class="article-title" itemprop="name">
+      0913模拟赛题解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
+        
+        <a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
   	<time datetime="2020-09-27T22:29:33.177Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener">0913模拟赛题解</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Test12 contest20200913</p>
+<a id="more"></a>
+<h1 id="单词-words"><a href="#单词-words" target="_blank" rel="noopener" class="headerlink" title="单词 (words)"></a>单词 (words)</h1><p>赛场上想到了补集转换，没有想到这个比较数学的方法。</p>
+<p>看样例。tree 和 heap 的有重复的组合是 treap 和 treeap。其本质原因在于这个 e。我们考虑对于每一个字母，用算贡献的方法算出它会导致多少重复的单词。假如字母 $c$ 在 $A$ 中出现了 $x_c$ 次，在 $B$ 中出现了 $y_c$ 次，那么这个字母对所有可能（不去重）的方案的贡献是 $(x+1)(y+1)-1=xy+x+y$（乘法原理，A 中取的数量乘 B 中取得数量减去不取），其中只有 $x+y$ 种方案是不重复的（$1,2,…,x+y$ 个 $c$），那么便会有 $xy$ 种情况是多算的。于是答案为 $n_an_b-\sum _cx_cy_c$。<strong>统计 x 和 y 时要忽略 A 的首字母和 B 的尾字母，因为他们是强制必选的</strong>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> a[N],b[N];</span><br><span class="line"><span class="keyword">int</span> n,m,x[<span class="number">29</span>],y[<span class="number">29</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	freopen(<span class="string">"words.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"words.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>); </span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,a+<span class="number">1</span>,b+<span class="number">1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(a+<span class="number">1</span>), m=<span class="built_in">strlen</span>(b+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++) x[a[i]-<span class="string">'a'</span>]++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;m;i++) y[b[i]-<span class="string">'a'</span>]++;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1l</span>l*n*m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) ans-=<span class="number">1l</span>l*x[i]*y[i];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="树-tree"><a href="#树-tree" target="_blank" rel="noopener" class="headerlink" title="树 (tree)"></a>树 (tree)</h1><p>有一个比较重要的性质：一定存在一种给边定向的方案。若多只牛在同一条道路上按照相反的方向走，那么可以考虑抵消成不经过这条边/只有一个方向。这样，我们可以贪心，这样考虑第 $p$ 头牛时就不用再计算前 $p-1$ 头牛的取目标点了，而是通过一个类似于增广的算法。</p>
+<p>所以，我们每次要记录一条边的定向（1 为正，0 为无向，-1 为反）。然后记录以 $i$ 为 $lca$ 时的最小值和最小值的目标点。</p>
+<p>每一次新读入一只牛，需要做以下几件事情</p>
+<ul>
+<li>找到最好的目标点（从牛的初始位置一路向上爬，若比答案更好则更新答案）</li>
+<li>更新牛-&gt;lca的边方向以及lca-&gt;牛的边方向以及最小值和最小值的目标点</li>
+<li>更新答案</li>
+</ul>
+<p>由于树的高度为 $O(\log n)$，于是复杂度为 $O((n+m)\log n)$。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/09/28/0913模拟赛题解/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T08:26:22.153Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-27</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="2020/09/28/【题解】LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【题解】LG3621 [APIO2007]风铃
+        
+      </div>
+    </a>
+  
+  
+    <a href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">0920模拟赛题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener">0920模拟赛题解</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/09/28/0913模拟赛题解/", 
+    sourceId: "0913模拟赛题解",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -267,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

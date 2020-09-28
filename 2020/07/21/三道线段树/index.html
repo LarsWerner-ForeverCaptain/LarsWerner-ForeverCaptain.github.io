@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
   <title>三道线段树 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 [前Ynoi] 区间加区间sin和题意描述给定一个序列，要求可以区间加 $v$ 和维护区间 $\sum \sin a_i$。$1\le n,m,a,v\le 2\times 10^5$ 题解可以考虑线段树维护 $\sin a_i$，对于加法，即求出 $\sin _{a+v}$，用三角函数公式可得 $\sin(a+v)&#x3D;\sin a\cos v+\cos a\sin v$，也就是说我们还要维护一">
+  <meta name="description" content="FDFZ JXD 作业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三道线段树">
 <meta property="og:url" content="2020/07/21/%E4%B8%89%E9%81%93%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="1 [前Ynoi] 区间加区间sin和题意描述给定一个序列，要求可以区间加 $v$ 和维护区间 $\sum \sin a_i$。$1\le n,m,a,v\le 2\times 10^5$ 题解可以考虑线段树维护 $\sin a_i$，对于加法，即求出 $\sin _{a+v}$，用三角函数公式可得 $\sin(a+v)&#x3D;\sin a\cos v+\cos a\sin v$，也就是说我们还要维护一">
+<meta property="og:description" content="FDFZ JXD 作业">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-21T00:21:31.083Z">
-<meta property="article:modified_time" content="2020-07-25T14:38:37.587Z">
+<meta property="article:modified_time" content="2020-09-27T09:35:30.776Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -170,7 +170,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-前Ynoi-区间加区间sin和"><a href="#1-前Ynoi-区间加区间sin和" target="_blank" rel="noopener" class="headerlink" title="1 [前Ynoi] 区间加区间sin和"></a>1 [前Ynoi] 区间加区间sin和</h2><h3 id="题意描述"><a href="#题意描述" target="_blank" rel="noopener" class="headerlink" title="题意描述"></a>题意描述</h3><p>给定一个序列，要求可以区间加 $v$ 和维护区间 $\sum \sin a_i$。$1\le n,m,a,v\le 2\times 10^5$</p>
+        <p>FDFZ JXD 作业</p>
+<a id="more"></a>
+<h2 id="1-前Ynoi-区间加区间sin和"><a href="#1-前Ynoi-区间加区间sin和" target="_blank" rel="noopener" class="headerlink" title="1 [前Ynoi] 区间加区间sin和"></a>1 [前Ynoi] 区间加区间sin和</h2><h3 id="题意描述"><a href="#题意描述" target="_blank" rel="noopener" class="headerlink" title="题意描述"></a>题意描述</h3><p>给定一个序列，要求可以区间加 $v$ 和维护区间 $\sum \sin a_i$。$1\le n,m,a,v\le 2\times 10^5$</p>
 <h3 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h3><p>可以考虑线段树维护 $\sin a_i$，对于加法，即求出 $\sin _{a+v}$，用三角函数公式可得 $\sin(a+v)=\sin a\cos v+\cos a\sin v$，也就是说我们还要维护一个 $\cos$，$\cos (a+v)=\cos a\cos v-\sin a\sin v$。</p>
 <p>总结一下，对于线段树上区间 $[l,r]$ 我们要维护 $\sum_{i=l}^{r} \sin_{a_i}$ 和 $\sum_{i=l}^{r} \cos_{a_i}$。</p>
 <p>代码细节不少，但是总体难度不大。</p>
