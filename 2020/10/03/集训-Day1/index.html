@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives: 2020 | blog of konjac LsWn</title>
+  <title>集训-Day1 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/2020/page/2/index.html">
+  <meta name="description" content="DP背包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集训-Day1">
+<meta property="og:url" content="2020/10/03/%E9%9B%86%E8%AE%AD-Day1/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="DP背包">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-03T05:03:17.926Z">
+<meta property="article:modified_time" content="2020-10-03T09:56:22.863Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,133 +150,249 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-集训-Day1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      集训-Day1
+    </h1>
+  
+
+        
+        <a href="2020/10/03/集训-Day1/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-10-03T05:03:17.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="DP"><a href="#DP" target="_blank" rel="noopener" class="headerlink" title="DP"></a>DP</h1><h1 id="背包"><a href="#背包" target="_blank" rel="noopener" class="headerlink" title="背包"></a>背包</h1><a id="more"></a>
+<h2 id="1-廉价背包"><a href="#1-廉价背包" target="_blank" rel="noopener" class="headerlink" title="1 廉价背包"></a>1 廉价背包</h2><p>01背包。n&lt;=100，价值&lt;=8000，重量&lt;=10^9<br>f[i][j] 表示前i个物品价值总和为j的最小重量<br>O(n^2p)<br>把答案压进状态中</p>
+<h2 id="2-动态背包"><a href="#2-动态背包" target="_blank" rel="noopener" class="headerlink" title="2 动态背包"></a>2 动态背包</h2><p>每次插入/删除一个物品。每次操作完有询问，问是否可以装满大小为w的背包<br>n,w&lt;=2000<br>若只记录是否可以装满w，那么会导致删除不方便，因为布尔没有可减性。但是方案数量是由可减性的。<br>f[s] 表示恰好装满s体积的方案数量 %p<br>插入 w：for s=W-&gt;w: f[s]+=f[s-w]<br>删除 w: for s=w-&gt;W: f[s]-=f[s-w]</p>
+<h2 id="3-无限背包"><a href="#3-无限背包" target="_blank" rel="noopener" class="headerlink" title="3 无限背包"></a>3 无限背包</h2><p>无限背包，总重量 $\le 10^9$，$n,w_I\le 5000$</p>
+<p>f[i] 表示 i 重量的物品和最大价值</p>
+<p>可以用大小为 $[\frac{T}{2}-5000,$\frac{T}{2}$]$ 的背包来求出 $f[T]$</p>
+<p>由于每种物品可以选择无限个，于是两个可以合并的背包是互相独立的。所以我们可以用倍增的方法，来算出 $f[T]$。每次合并的复杂度为 $O(w^2)$，所以复杂度为 $O(w^2\log T)$。</p>
+<h2 id="4-极差背包"><a href="#4-极差背包" target="_blank" rel="noopener" class="headerlink" title="4 极差背包"></a>4 极差背包</h2><p>[Petrozavodsk Winter Camp 2018]</p>
+<p>用最少的物品装满大小为 T 的背包并在此基础最小化极差。</p>
+<p>$n,T,w\le 3000$。</p>
+<p>做法一：蠕动区间+动态背包。把物品从小到大排序。蠕动区间中一直插入到可以达到 T 为止，更新答案。然后不定删除最小的左端点。</p>
+<p>做法二：二分答案（巨佬口中的垃圾做法？）。</p>
+<h2 id="5-大背包"><a href="#5-大背包" target="_blank" rel="noopener" class="headerlink" title="5 大背包"></a>5 大背包</h2><p>01 背包。$p\le 10^9, n\le 10000, w_i\le 50, T\le nw$</p>
+<p>远离玄学。</p>
+<p>先按照性价比贪心一下。可以证明，贪心解和正解不会相差超过 $2w_i$ 个物品，所以相差的这些物品的总容量为 $2w_i^2$。所以可以在后面做一次 $O(n\times 2w_i^2)$ 的背包 DP。</p>
+<p>对于证明上述性质，可以用调整法。由于每次将一个贪心解物品换成其他物品，总重量会上升。上升空间为 $2w_i$（否则贪心解还可以放再放一个物品），所以最多替换 $2w_i$ 次。</p>
+<h2 id="6-无限大背包"><a href="#6-无限大背包" target="_blank" rel="noopener" class="headerlink" title="6 无限大背包"></a>6 无限大背包</h2><p>无限背包。$T\le 10^{5000}, n\le 5000, w\le 5000, p_i\le 10^9$。</p>
+<p>5的做法+3的做法</p>
+<h2 id="7-廉价背包-加强版"><a href="#7-廉价背包-加强版" target="_blank" rel="noopener" class="headerlink" title="7 廉价背包 加强版"></a>7 廉价背包 加强版</h2><p>01 背包。$w_i,T\le 10^9, n\le 10000, p_i\le 50$。</p>
+<p>用 1 的做法。同理可得，贪心解和最优解不会超过 $2p_i$ 个元素。1+5=7。</p>
+<h2 id="8-廉价无限大背包"><a href="#8-廉价无限大背包" target="_blank" rel="noopener" class="headerlink" title="8 廉价无限大背包"></a>8 廉价无限大背包</h2><p>无限背包。$T\le 10^{5000}, n,p_i\le 5000, w_i\le 10^9$。</p>
+<p>贪心取。假设取了 $k$ 个那么最大总价值被锁定在区间 $[k_{p_i},(k+1)_{p_i}]$ 中，且和最优解最多相差 $2p_i$ 个元素。然后用 6 的做法。1+6=3+7=8 </p>
+<h2 id="9-动态背包2"><a href="#9-动态背包2" target="_blank" rel="noopener" class="headerlink" title="9 动态背包2"></a>9 动态背包2</h2><p>01背包。每次插入一个物品，或者删除最早插入的一个物品。每次操作后问大小为 w 的背包总价值最大是多少。</p>
+<p>$n,w\le 8000$。</p>
+<p>每一个物品被插入后，更新一次 DP，$O(w)$。每一个物品被删除后，从当前最后一个数开始往最后一个未重构的物品做从右向左的背包，$O(w)$。</p>
+<h2 id="10-多重背包"><a href="#10-多重背包" target="_blank" rel="noopener" class="headerlink" title="10 多重背包"></a>10 多重背包</h2><p>多重背包。$n,T\le 8000$。</p>
+<p>方法一：二进制拆分 $O(nT\log T)$。</p>
+<p>方法二：单调队列。</p>
+<p>插入新的物品 $i$ 时，按照 $j$ 模 $w_i$ 的余数 $r$ 进行分类，转移。改写变量 $j=w_is+r, g_s=f_j$。$g’_s=\max_{0\le t\le k}\{g_{s-t}+p_it\}$。显然可以用单调队列优化。</p>
+<h2 id="11-大背包-加强版"><a href="#11-大背包-加强版" target="_blank" rel="noopener" class="headerlink" title="11 大背包 加强版"></a>11 大背包 加强版</h2><p>01 背包。$T\le 50000, n\le 200000, w_i\le 100, p_i\le 10^9$。</p>
+<p>按 $w$ 分类。对于每一个 $w$，价值关于总重量的函数肯定是一个上凸函数。</p>
+<p>插入重量 $w$ 类的元素，按 $j$ 模 $w$ 的余数 $r$ 分类，转移。$g’[s]=\max_{t\le s} \{g_t+p_{tot}(s-t)\}=\max _{t\le s} val(s,t)$。</p>
+<p>$p_{tot} (s-t)$ 代表贪心取最大的 $s-t$ 个的总价值和。</p>
+<p>由于每一个 $w$ 类的 $p$ 是上凸的，对于 $t_1&lt;t_2\le s_1&lt;s_2$，有决策单调性 $(val(s_1,t_1)-val(s_1,t-2))-(val(s_2,t_1)-cal(s_2,t_2))\ge 0$。所以当 $val(s_1,t_1)\le val(s_1,t_2)$，则 $t_1$ 这个决策点之后就没有用了。可以用分治去做。</p>
+<h2 id="12-整数拆分"><a href="#12-整数拆分" target="_blank" rel="noopener" class="headerlink" title="12 整数拆分"></a>12 整数拆分</h2><p>将 $n$ 拆分成若干个不计顺序的正整数和，问方案数。$n\le 10^5$。</p>
+<p>算法一：$f(i,j)$ 表示现在考虑到了最大数 $i$，总和为 $j$ 的方案数。$O(n^2)$。</p>
+<p>算法二：$f(i,j)$ 表示现在取了 $i$ 个数，总和为 $j$ 的方案数。$O(n^2)$。</p>
+<p>算法三：汲取算法一二的长处。用前一个计算 $\le \sqrt n$ 的方案，用后一个计算 $&gt;\sqrt n$ 的方案。</p>
+<h2 id="13-取模背包"><a href="#13-取模背包" target="_blank" rel="noopener" class="headerlink" title="13 取模背包"></a>13 取模背包</h2><p>问是否可以选出一些物品使得总重量 $\mod m=s$。</p>
+<p>$n,m\le 10^5$。</p>
+<p>听 happydef 巨佬说可以循环卷积 $O(m^2\log m)$，反正我也不会，不管这个解法。</p>
+<p>不带模的方法可以用鏼的论文中的生成函数方法。</p>
+<p>每 $+w$，数组相当于向右平移了一下（以及一部分回到了最开始）。</p>
+<p>剩下的没听懂……回头再看 </p>
+<h2 id="14-暴力背包"><a href="#14-暴力背包" target="_blank" rel="noopener" class="headerlink" title="14 暴力背包"></a>14 暴力背包</h2><p>01 背包。$w,T,p\le 10^{18}, n\le 40$</p>
+<p>用暴力剪枝折半搜索即可。</p>
+<p>Meet in the middle!</p>
+<h2 id="15-无价背包"><a href="#15-无价背包" target="_blank" rel="noopener" class="headerlink" title="15  无价背包"></a>15  无价背包</h2><p>01 背包。没有价值。$n,w\le 8000, T\le nw$。求最大总重量。</p>
+<p>先贪心去放东西。最后剩余空间肯定小于 $w$。转化为新的问题：两个数组，A 中负，B 中正，现在要使得总和小于等于剩余空间 $t$ 且尽可能的大。</p>
+<p>有个性质：所有选出的数一定存在一个排列使得所有前缀和都 $\in [-m,m]$。</p>
+<p> $f(j,k)$ 表示最小的 $i$，使得 $A[1…i]\cup B[1…j]$  的元素 $\in [-m,m]$。</p>
+<p>三种更新</p>
+<ul>
+<li>用 $g(j,k)$ 更新 $g(j+1,k)$</li>
+<li>用 $g(j,k)$ 更新 $g(j+1,k+B_{j_1})$</li>
+<li>对所有 $i’&gt;g(j,k)$，用 $i$ 更新 $g(j,k+A_{i’})$。</li>
+</ul>
+<p>优化：$j$ 升序枚举，$k$ 降序枚举。第三种更新中，$i’$ 只需要枚举 $g(j,k)+1, g(j-k,k)+1$。滚动数组一下，结束。 </p>
+<h1 id="Others"><a href="#Others" target="_blank" rel="noopener" class="headerlink" title="Others"></a>Others</h1><h2 id="1-例一"><a href="#1-例一" target="_blank" rel="noopener" class="headerlink" title="1 例一"></a>1 例一</h2><blockquote>
+<p>对于每一对点，最小化路径上边权和+最大点权。</p>
+</blockquote>
+<h2 id="2-例二"><a href="#2-例二" target="_blank" rel="noopener" class="headerlink" title="2 例二"></a>2 例二</h2><blockquote>
+<p>给定整数序列 $a_i$，问最少修改多少个元素，将整个序列变成严格上升序列。$n\le 10^5$。</p>
+</blockquote>
+<p>不严格上升：求出 LIS 然后其他元素修改即可。</p>
+<p>$a_i&lt;a_{i+1}$ 等价于 $a_i\le a_{i+1}+1$ 等价于 $a_i-i\le a_{i+1}-(i+1)$。于是转化成不严格上升的版本。</p>
+<h2 id="3-例三"><a href="#3-例三" target="_blank" rel="noopener" class="headerlink" title="3 例三"></a>3 例三</h2><blockquote>
+<p>一个数组，请你将其做一个循环移位后，使得 LIS 长度最大。求最大的 LIS。$n\le 4\times 10^4$。</p>
+</blockquote>
+<p>先延长一倍。</p>
+<p>考虑 LIS 很小的情况。$f(i,k)$ 代表结尾是 $i$，使得 LIS 长度为 $k$ 的最大的起始位置。$f(i,k)=\max_{i&gt;j, a_i&gt;a_j} f(j,k-1)$。BIT 维护即可。</p>
+<p>考虑 LIS 很大的情况。那么一个数在 LIS 上的几率很大。我们随机化选择一个点看他是不是 LIS 的点。我们枚举一个 $i$，然后看 $[i,n+i-1]$ 中且包含这个选定的 LIS 上点的 LIS 长度。</p>
+<p>复杂度是 $O(n\sqrt n \log n)$。</p>
+<h2 id="4-例四"><a href="#4-例四" target="_blank" rel="noopener" class="headerlink" title="4 例四"></a>4 例四</h2><blockquote>
+<p>将一个圆环切成若干段，使得每一段的数字之和 $\le k$，问最少分几段。</p>
+<p>$n\le 10^5, k\le 10^9$。</p>
+</blockquote>
+<p>法一：随机把圆环切成序列然后贪心。得分：玄学</p>
+<p>法二：用 two pointers / 二分预处理出每一个点向后跳一步会跳到哪里。然后用倍增算出跳 $2^j$ 步会落到哪里。把环铺成 $2n$ 长度的链，然后贪心时跳直接倍增跳到 $n+i$ 即可。</p>
+<p>为啥是 DP？鏼奆佬：倍增本来就是 DP。</p>
+<h2 id="5-例五"><a href="#5-例五" target="_blank" rel="noopener" class="headerlink" title="5 例五"></a>5 例五</h2><blockquote>
+<p>ONTAK2014 Grzybiarze</p>
+<p>$n\times m$ 的网格图，每次从格子 $(1,1)$ 出发，只能向右下走，到达 $(n,m)$，每经过一次可以使得这个格子的数减少 $1$。问最少走多少次可以让网格图清零。</p>
+</blockquote>
+<p>找到网格图的最长大反链。可以用 $O(nm)$ 的最长路 DP 解决。</p>
+<p>拓：Dilworth 定理：最长反链=最小链覆盖</p>
+<h2 id="6-例六"><a href="#6-例六" target="_blank" rel="noopener" class="headerlink" title="6 例六"></a>6 例六</h2><blockquote>
+<p>求 $n$ 个点的无向图的色数。$n\le 16$。</p>
+</blockquote>
+<p>$f(s)$ 代表 $s$ 代表的子图的色数。转移为取出一个独立集 $t$，$f(s)=\min f(s-t)+1$。</p>
+<p>对于枚举子集</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> y=x;y;y=(y<span class="number">-1</span>)&amp;x)</span><br></pre></td></tr></table></figure>
+<h2 id="7-例七（哈密尔顿回路）"><a href="#7-例七（哈密尔顿回路）" target="_blank" rel="noopener" class="headerlink" title="7 例七（哈密尔顿回路）"></a>7 例七（哈密尔顿回路）</h2><blockquote>
+<p>求完全有边权图的最小哈密尔顿回路。$n\le 17$。</p>
+</blockquote>
+<h2 id="8-例八"><a href="#8-例八" target="_blank" rel="noopener" class="headerlink" title="8 例八"></a>8 例八</h2><blockquote>
+<p>$n$ 个物品每个体积 $w_i$，$m$ 个背包每个大小 $a_i$。问最少需要多少个背包。</p>
+<p>$n\le 18, m\le 100$。</p>
+</blockquote>
+<p>$f(s)$ 代表状态为 $s$ 的 &lt;最小背包数，最后一包还剩多少&gt;</p>
+<h2 id="9-例九"><a href="#9-例九" target="_blank" rel="noopener" class="headerlink" title="9 例九"></a>9 例九</h2><blockquote>
+<p>给定二分图，左边 $n$ 个点右边 $m$ 个点，问有多少个匹配使得左边的每一个点都在匹配中。</p>
+<p>$n\le 15, m\le 100$。</p>
+</blockquote>
+<p>$f(i,s)$ 代表考虑了右边前 $i$ 个点前左边匹配状态为 $s$ 的方案数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-29T10:29:52.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener">偏数学的定理</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/03/集训-Day1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/09/网络流建模/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-09T04:27:35.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解]ACL Contest 1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">网络流建模</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/03/集训-Day1/", 
+    sourceId: "集训-Day1",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev noopener" href="archives/2020/" target="_blank">&amp;laquo; Prev</a><a class="page-number" href="archives/2020/" target="_blank" rel="noopener">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -298,8 +416,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
