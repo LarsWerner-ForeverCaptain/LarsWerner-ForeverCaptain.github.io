@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
   <title>集训-Day1 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DP背包">
+  <meta name="description" content="DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集训-Day1">
 <meta property="og:url" content="2020/10/03/%E9%9B%86%E8%AE%AD-Day1/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="DP背包">
+<meta property="og:description" content="DP">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-03T05:03:17.926Z">
-<meta property="article:modified_time" content="2020-10-03T09:56:22.863Z">
+<meta property="article:modified_time" content="2020-10-03T10:11:36.525Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -170,8 +170,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DP"><a href="#DP" target="_blank" rel="noopener" class="headerlink" title="DP"></a>DP</h1><h1 id="背包"><a href="#背包" target="_blank" rel="noopener" class="headerlink" title="背包"></a>背包</h1><a id="more"></a>
-<h2 id="1-廉价背包"><a href="#1-廉价背包" target="_blank" rel="noopener" class="headerlink" title="1 廉价背包"></a>1 廉价背包</h2><p>01背包。n&lt;=100，价值&lt;=8000，重量&lt;=10^9<br>f[i][j] 表示前i个物品价值总和为j的最小重量<br>O(n^2p)<br>把答案压进状态中</p>
+        <h1 id="DP"><a href="#DP" target="_blank" rel="noopener" class="headerlink" title="DP"></a>DP</h1><a id="more"></a>
+<h1 id="背包"><a href="#背包" target="_blank" rel="noopener" class="headerlink" title="背包"></a>背包</h1><h2 id="1-廉价背包"><a href="#1-廉价背包" target="_blank" rel="noopener" class="headerlink" title="1 廉价背包"></a>1 廉价背包</h2><p>01背包。n&lt;=100，价值&lt;=8000，重量&lt;=10^9<br>f[i][j] 表示前i个物品价值总和为j的最小重量<br>O(n^2p)<br>把答案压进状态中</p>
 <h2 id="2-动态背包"><a href="#2-动态背包" target="_blank" rel="noopener" class="headerlink" title="2 动态背包"></a>2 动态背包</h2><p>每次插入/删除一个物品。每次操作完有询问，问是否可以装满大小为w的背包<br>n,w&lt;=2000<br>若只记录是否可以装满w，那么会导致删除不方便，因为布尔没有可减性。但是方案数量是由可减性的。<br>f[s] 表示恰好装满s体积的方案数量 %p<br>插入 w：for s=W-&gt;w: f[s]+=f[s-w]<br>删除 w: for s=w-&gt;W: f[s]-=f[s-w]</p>
 <h2 id="3-无限背包"><a href="#3-无限背包" target="_blank" rel="noopener" class="headerlink" title="3 无限背包"></a>3 无限背包</h2><p>无限背包，总重量 $\le 10^9$，$n,w_I\le 5000$</p>
 <p>f[i] 表示 i 重量的物品和最大价值</p>
@@ -346,6 +346,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [题解]KK2310 背盆
+        
+      </div>
+    </a>
   
   
     <a href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
