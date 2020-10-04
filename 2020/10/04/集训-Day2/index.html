@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives: 2020 | blog of konjac LsWn</title>
+  <title>集训-Day2 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/2020/index.html">
+  <meta name="description" content="图论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集训-Day2">
+<meta property="og:url" content="2020/10/04/%E9%9B%86%E8%AE%AD-Day2/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="图论">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-04T10:05:51.490Z">
+<meta property="article:modified_time" content="2020-10-04T10:05:51.761Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,295 +150,267 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-集训-Day2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      集训-Day2
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/集训-Day2/" target="_blank" rel="noopener" class="archive-article-date">
+
+        
+        <a href="2020/10/04/集训-Day2/" target="_blank" rel="noopener" class="archive-article-date">
   	<time datetime="2020-10-04T10:05:51.490Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/集训-Day2/" target="_blank" rel="noopener">集训-Day2</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="图论"><a href="#图论" target="_blank" rel="noopener" class="headerlink" title="图论"></a>图论</h1><a id="more"></a>
+<h2 id="2-SAT"><a href="#2-SAT" target="_blank" rel="noopener" class="headerlink" title="2-SAT"></a>2-SAT</h2><h3 id="例一"><a href="#例一" target="_blank" rel="noopener" class="headerlink" title="例一"></a>例一</h3><blockquote>
+<p>2018-2019 ACM-ICPC Asia Seoul Regional K</p>
+<p>$k$ 盏灯，每盏灯是红色或者蓝色。$n$ 个人，每人选择三盏灯，并猜颜色。若猜对两盏灯及以上的颜色就可以获得奖品。现在已知每个人的猜测，问是否有一种着色方案使得所有人都获奖。</p>
+</blockquote>
+<p>三盏灯猜中两盏 —&gt; 每两盏灯至少有一个猜对的。于是转化成了朴素 2-SAT 问题。</p>
+<h3 id="例二"><a href="#例二" target="_blank" rel="noopener" class="headerlink" title="例二"></a>例二</h3><blockquote>
+<p>Wielka Przesmycka 2020</p>
+<p>一个数列 $a_i$，选出若干个二元组 $(i,i+1)$，满足对于每一个 $i$，都有至少一个选中的二元组包含 $i$，且每个二元组都互不相同。问是否有一种合法的选法。$n\le 10^5$。</p>
+</blockquote>
+<p>建立虚拟节点 $y_{1…m}$，对于先等的变量，要达到y是x的bool取值的前缀或的效果。</p>
+<p>$x_i\to y_i, y_{i-1}\to y_i, y_{i-1}\to \text{not }x_i$</p>
+<h3 id="例三"><a href="#例三" target="_blank" rel="noopener" class="headerlink" title="例三"></a>例三</h3><blockquote>
+<p>NEERC 2016 B Binary Code</p>
+<p>$n$ 个二进制串 $s_1…s_n$，如果满足对于任意的 $i\neq j$，$s_i$ 不是 $s_j$ 的前缀，称为前缀编码。</p>
+<p>每个二进制串可能至多有一个问好。问是否存在一个把问号改成 $0/1$ 的方案使得这 $n$ 个串是前缀编码。</p>
+</blockquote>
+<p>$n^2$ 暴力：对于每一对串，检查 $4$ 种 $?$ 的组合，然后连边。</p>
+<p>可以用 trie 去优化。</p>
+<h3 id="例四"><a href="#例四" target="_blank" rel="noopener" class="headerlink" title="例四"></a>例四</h3><blockquote>
+<p>TCO2014 celebrity hand</p>
+<p>一个长方形空地，里面给定了 $n$ 个互不相同的点，请在长方形中放入 $n$ 个等腰直角三角形，使得斜边长度都等于 $l$，且第 $i$ 个三角形的斜边中点即第 $i$ 个给定的点。每个三角形的斜边需要水平/竖直，且各个三角形互不重叠。问最长的 $l$。$n\le 50$。</p>
+</blockquote>
+<h3 id="例五"><a href="#例五" target="_blank" rel="noopener" class="headerlink" title="例五"></a>例五</h3><blockquote>
+<p>POI2011 Conspiracy</p>
+<p>一个无向图，将点集分为一个团和一个独立集。问有多少种方案。$n\le 5000$。</p>
+</blockquote>
+<p>如果只考虑是否可以，用 2-SAT 即可。（若加入独立集，周围的点就必须入团；若入团，不连边的点就必须加入独立集）。</p>
+<p>一般的 2-SAT 计数是 #P-Hard 的。但这题比较特殊。</p>
+<p>先求出一组特解。然后剩下的解可以用三种方法得到。把团的点移到独立集，把独立集的点移到团，以及交换两个点。</p>
+<h2 id="构造"><a href="#构造" target="_blank" rel="noopener" class="headerlink" title="构造"></a>构造</h2><h3 id="例六"><a href="#例六" target="_blank" rel="noopener" class="headerlink" title="例六"></a>例六</h3><blockquote>
+<p>所有 $n$ 排列构成了一个 $n!$ 个点的无向图，其中 $a,b$ 连边当且仅当可以选择 $i,j$ 并将 $a_i,a_j$ 交换以后得到 $b$。输出一个哈密尔顿回路。</p>
+</blockquote>
+<p>先得出 $n-1$ 的解，然后可以得到 $n$ 的解。对于每一个 $n-1$ 的排列，把第 $n$ 个从左移到右/从右移到左，比如如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">123: 4123 1423 1243 1234</span><br><span class="line">132: 1324 1342 1432 4132</span><br><span class="line">312: 4312 3412 3142 3124</span><br><span class="line">321: 3214 3241 3421 4321</span><br><span class="line">231: 4231 2431 2341 2314</span><br><span class="line">213: 2134 2143 2413 4213</span><br></pre></td></tr></table></figure>
+<h3 id="例七"><a href="#例七" target="_blank" rel="noopener" class="headerlink" title="例七"></a>例七</h3><blockquote>
+<p>CF323B  </p>
+<p>构造有 $n$ 个节点的竞赛图，使得任意两个节点 $u,v$，从 $u$ 到 $v$ 的最短距离不超过 $2$。$3\le n\le 1000$。</p>
+</blockquote>
+<p>归纳构造法。假设 $n$ 可以，则 $(n+1)\to(n+2)\to (1…n)\to (n+1)$。</p>
+<p>$3$ 可以，所以所有奇数都可以。$6$ 可以，所以除了 $4$，所有偶数都可以。</p>
+<h3 id="例八"><a href="#例八" target="_blank" rel="noopener" class="headerlink" title="例八"></a>例八</h3><blockquote>
+<p>SRM675 Tree And Path Length 3</p>
+<p>给定整数 $s$，构造一棵节点个数任意的树，使得其中长度为 $3$ 的简单路径的个数为 $s$。$s\le 10000, n\le 500$。</p>
+</blockquote>
+<p>$s=100k+a$，则构造一棵主体 $4$ 个节点毛毛虫。第一个节点连 $k-1$ 只足，第二个节点连 $99$ 只足，第三个节点没有足，第四个节点包含 $a$ 个足。</p>
+<h3 id="例九"><a href="#例九" target="_blank" rel="noopener" class="headerlink" title="例九"></a>例九</h3><blockquote>
+<p>SRM693 Medium Bipartite COnstruction</p>
+<p>输入 $k$，构造一个有 $n$ 个白点和 $n$ 个黑点的二分图，满足 $1\le n\le 20$，边数不超过 $120$，使得图中共有 $k$ 种不同的完备匹配。允许重边。</p>
+</blockquote>
+<p>把 $k$ 三进制拆分，两边各有 $20$ 个点，同样标号的黑白点连 $3$ 条边。（见讲义）</p>
+<h3 id="例十"><a href="#例十" target="_blank" rel="noopener" class="headerlink" title="例十"></a>例十</h3><blockquote>
+<p>给定一个整数 $k$，构造一个无重边有向图邻接矩阵使得 $1$ 走 $m$ 步恰好走到 $n$ 的方案数为 $k$。</p>
+<p>需要满足$n,m\le 30, K\le 10^{18}$。</p>
+</blockquote>
+<p>将 $k$ 进行 $d$ 进制拆分。从 $d$ 个点的团连到链的倒数第 $i$ 个点，方案书就是 $d^{m-i-1}$。取 $d=9$，得到的 $n,m$ 就可以足够小。</p>
+<h3 id="例十一"><a href="#例十一" target="_blank" rel="noopener" class="headerlink" title="例十一"></a>例十一</h3><blockquote>
+<p>BZOJ4727</p>
+<p>给定一个 $n$ 个点的就有向图，任意两个点之间都有连边。对于每个点 $v$，求从 $v$ 出发的一条经过点数最多且没有重复经过同一个点两次及以上的简单路径。</p>
+<p>$n\le 2000$。</p>
+</blockquote>
+<p>强连通的竞赛图一定存在哈密尔顿路径。所以我们缩点后做拓扑排序，最后做一个有点权的最长路径。</p>
+<h3 id="例十二"><a href="#例十二" target="_blank" rel="noopener" class="headerlink" title="例十二"></a>例十二</h3><blockquote>
+<p>CF547D</p>
+<p>平面上有 $n$ 个正整数坐标点，给这些点黑白染色，使得每行每列都满足 $|$ 黑点数量-白点数量$ &lt;=1$。</p>
+</blockquote>
+<h3 id="例十三"><a href="#例十三" target="_blank" rel="noopener" class="headerlink" title="例十三"></a>例十三</h3><blockquote>
+<p>CF429E</p>
+<p>有一些整数区间 $[l,r]$，请你对这些区间黑白染色，使得对于每个整数，覆盖他的  $|$ 黑区间数量-白区间数量$ |&lt;=1$。</p>
+</blockquote>
+<p> 区间起点到终点连无向边。</p>
+<p>如果每个点的度数为偶数，则一定有解且数量的差 $=0$。我们把所有边定向，从左往右的边为白色，从右往左的边为黑色。</p>
+<p>如果不是，那么把所有度数是奇数的点全部挑出来，然后两两配对连边，跑欧拉回路，</p>
+<p>定向，然后删掉那些多余的边。</p>
+<h3 id="例十四"><a href="#例十四" target="_blank" rel="noopener" class="headerlink" title="例十四"></a>例十四</h3><blockquote>
+<p>TCO2020 Round 4</p>
+<p>$n=2k (k&gt;0)$。定义有向图 $G$，从每个点 $i$ 连向 $i,2i\bmod n$ 和 $i,2i-1 \bmod n$。判断是否有哈密尔顿回路，并输出。</p>
+<p>$n\le 3000$。</p>
+</blockquote>
+<p>建立一张新图。新图中有 $k$ 个点。原图的 $u\to v$ 转化为新图的 $u\bmod k \to v\bmod k$，边权为 $v$，新图的欧拉回路的边权即原图的哈密尔顿回路。</p>
+<h2 id="MST"><a href="#MST" target="_blank" rel="noopener" class="headerlink" title="MST"></a>MST</h2><h3 id="例十五"><a href="#例十五" target="_blank" rel="noopener" class="headerlink" title="例十五"></a>例十五</h3><blockquote>
+<p>CF888G</p>
+<p>$n$ 个点的完全图，每个点有点权 $a_i$，$i,j$ 的边权为 $a_i\operatorname{xor}a_j$。求 MST。</p>
+<p>$n\le 100000$。</p>
+</blockquote>
+<p>用 Boruvka 算法，不用建出所有的边。找最小的边的过程可以用 trie 树。</p>
+<h3 id="例十六"><a href="#例十六" target="_blank" rel="noopener" class="headerlink" title="例十六"></a>例十六</h3><blockquote>
+<p>USACO OPEN17 Grass</p>
+<p>一个无向图，每个点有颜色，每条边有边权，支持操作</p>
+<ul>
+<li>修改某个点的颜色</li>
+<li>询问树中不同色的两点间边权的最小值</li>
+</ul>
+<p>$n,q\le 500000$</p>
+</blockquote>
+<p>询问的最小的边权一定在 MST 中！于是图转化成了树。</p>
+<p>对于每一个节点，用 <code>multiset</code> 维护不同颜色的最小值组成的集合，以及不同颜色的儿子组成的集合。</p>
+<p>于是对于修改操作，只需要更新自己的第一个 multiset 和父亲的两个 multiset。</p>
+<h3 id="例十七"><a href="#例十七" target="_blank" rel="noopener" class="headerlink" title="例十七"></a>例十七</h3><blockquote>
+<p>2018sd 集训 d1t1</p>
+<p>带边权无向图，第 $i$ 条边的边权是 $2^i$。求一个回路使得每条边至少经过一次，最小化总权值。</p>
+<p>$n,m\le 500000$。</p>
+</blockquote>
+<p>每条边最多走两次。且如果所有点的度都是偶数，那么则直接有欧拉回路。所以相当于选择一些边走两次使得所有的点都是偶度点。</p>
+<p>可以发现，不在 MST 上的边是不用连两次的。于是图上问题转化为树上问题。于是从叶子向上爬确定所有需要连两次的边。</p>
+<h2 id="最短路"><a href="#最短路" target="_blank" rel="noopener" class="headerlink" title="最短路"></a>最短路</h2><h3 id="例十八"><a href="#例十八" target="_blank" rel="noopener" class="headerlink" title="例十八"></a>例十八</h3><blockquote>
+<p>一张有向带边权图，有 $k$ 个特殊点 $v_1,v_2,…,v_k$，求 $dist(v_i,v_j)$ 的最小值。</p>
+<p>$n,m\le 10^5$。</p>
+</blockquote>
+<p>分治+dijkstra</p>
+<h3 id="例十九"><a href="#例十九" target="_blank" rel="noopener" class="headerlink" title="例十九"></a>例十九</h3><blockquote>
+<p>CF715B</p>
+<p>一张无向图，边权都是正整数，有一些边权未知。请安排边权，使得 $s$ 到 $t$ 的最短路恰好等于 $l$。</p>
+<p>$n,m\le 100000$。</p>
+</blockquote>
+<p>若不连通或者未知的边权全部取最小值最短路仍然大于 $l$，无解。</p>
+<p>初始的时候所有未知边权设为 $1$，然后重复每条边轮流 $+1$。操作序列为 $\{x_1++, x_2++, …, x_e++, x_1++, …\}$所以可以二分查找操作序列（截至到第几条边加了几） $O(m\log n\log (ml))$。</p>
+<h3 id="例二十"><a href="#例二十" target="_blank" rel="noopener" class="headerlink" title="例二十"></a>例二十</h3><blockquote>
+<p>POI2014/2015</p>
+<p>一个 DAG，对于每一个 $i$，求出删掉第 $i$ 个点后 $1\to n$ 的最短路。</p>
+</blockquote>
+<p>建立拓扑序。$1$ 到 $n$ 不经过 $i$ 代表一定是跳过了 $i$。设 $f(i)$ 代表 $1\to i$ 最短路，$g(i)$ 代表 $i\to n$ 最短路。于是不经过 $i$ 的最短路是 $\min _{i&lt;j&lt;k}f(j)+w(j,k)+g(k)$。</p>
+<p>开一个 multiset 维护当前 $i$ 满足关系的 $j,k$ 的最小的值。$i$ 变成 $i+1$ 后应该把起点在 $j=i$ 的边加入，$k=i+1$ 的边删除。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/04/集训-Day2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T05:15:59.073Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解]LG3188 [HNOI2007]梦幻岛宝珠</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener">[题解]LG3188 [HNOI2007]梦幻岛宝珠</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/04/集训-Day2/", 
+    sourceId: "集训-Day2",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T11:58:20.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener">[题解]KK2310 背盆</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/03/集训-Day1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T05:03:17.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/03/集训-Day1/" target="_blank" rel="noopener">集训-Day1</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-02T10:27:07.951Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener">[题解]ACL Contest 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-29T11:42:56.229Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener">[题解]BZOJ4883 棋盘上的守卫</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-28T12:46:11.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener">[题解]LG3621 [APIO2007]风铃</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T22:29:33.177Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener">0913模拟赛题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T08:26:22.153Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener">0920模拟赛题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/07/21/三道线段树/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-07-21T00:21:31.083Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/07/21/三道线段树/" target="_blank" rel="noopener">三道线段树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="archives/2020/page/2/" target="_blank" rel="noopener">2</a><a class="extend next" rel="next noopener" href="archives/2020/page/2/" target="_blank">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +434,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
