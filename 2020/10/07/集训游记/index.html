@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>[题解]LG3621 [APIO2007]风铃 | blog of konjac LsWn</title>
+  <title>集训游记 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目链接：https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3621">
+  <meta name="description" content="DAY 0疯狂做国庆作业 DAY 1上午和下午和同学出去团建，很开心。晚上由于要赶去金山没有留下来。晚上参加了开营典礼，见到了鏼大神的真实面貌，然后就回房间了。 晚上 yzc 的事情终于公布出来了，祝贺我们的 yzc 和 xsy 同学喜成真正公开的承认的人 win。 DAY 2这里早饭还挺好。这天讲的是 DP。早上讲了一堆背包（13 道左右），让我怀疑我学了假的背包.jpg。 下午讲了一些状压 D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[题解]LG3621 [APIO2007]风铃">
-<meta property="og:url" content="2020/09/28/%5B%E9%A2%98%E8%A7%A3%5DLG3621%20%5BAPIO2007%5D%E9%A3%8E%E9%93%83/index.html">
+<meta property="og:title" content="集训游记">
+<meta property="og:url" content="2020/10/07/%E9%9B%86%E8%AE%AD%E6%B8%B8%E8%AE%B0/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="题目链接：https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3621">
+<meta property="og:description" content="DAY 0疯狂做国庆作业 DAY 1上午和下午和同学出去团建，很开心。晚上由于要赶去金山没有留下来。晚上参加了开营典礼，见到了鏼大神的真实面貌，然后就回房间了。 晚上 yzc 的事情终于公布出来了，祝贺我们的 yzc 和 xsy 同学喜成真正公开的承认的人 win。 DAY 2这里早饭还挺好。这天讲的是 DP。早上讲了一堆背包（13 道左右），让我怀疑我学了假的背包.jpg。 下午讲了一些状压 D">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-28T12:46:11.077Z">
-<meta property="article:modified_time" content="2020-09-28T13:25:39.912Z">
+<meta property="article:published_time" content="2020-10-07T14:53:52.625Z">
+<meta property="article:modified_time" content="2020-10-07T15:29:42.373Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -150,32 +150,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[题解]LG3621 [APIO2007]风铃" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-集训游记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [题解]LG3621 [APIO2007]风铃
+      集训游记
     </h1>
   
 
         
-        <a href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-28T12:46:11.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
+        <a href="2020/10/07/集训游记/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-10-07T14:53:52.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>题目链接：<a href="https://www.luogu.com.cn/problem/P3621" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3621</a></p>
-<a id="more"></a>
-<h2 id="题目大意"><a href="#题目大意" target="_blank" rel="noopener" class="headerlink" title="题目大意"></a>题目大意</h2><p>给定一棵二叉树，每次操作可以交换一个节点的两棵子树。问最少操作多少次可以让这颗二叉树成为完全二叉树。$n\le 10^5$。</p>
-<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>首先，如果所有叶节点的深度相差 $&gt;1$，那么肯定无法完成目标。于是现在只需要考虑左边的儿子更深的限制。</p>
-<p>然后，我们发现，其实这个最优化是一个幌子。我们只需要在每一个点上判断是否需要交换。如果需要交换，那么只能在这里交换。还需要判断一种不可能成功的情况。记录每一个节点的子树最深叶节点和最浅叶节点，深度差为 $p_i$。如果两个儿子的 $p_i$ 都 $&gt;0$，那么肯定是不可能交换成功的。如果右儿子的最深叶节点深度比左儿子的最浅叶节点的深度大，那么就需要交换。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span><span class="keyword">int</span> l,r,d1,d2,p;&#125;t[N]; <span class="keyword">int</span> hd[N],tot;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(u==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">	dfs(t[u].l), dfs(t[u].r);</span><br><span class="line">	<span class="keyword">if</span>(ans==<span class="number">-1</span>) <span class="keyword">return</span>;</span><br><span class="line">	t[u].d1=max(t[t[u].l].d1,t[t[u].r].d1)+<span class="number">1</span>;</span><br><span class="line">	t[u].d2=min(t[t[u].l].d2,t[t[u].r].d2)+<span class="number">1</span>;</span><br><span class="line">	t[u].p=t[u].d1-t[u].d2;</span><br><span class="line">	<span class="keyword">if</span>(t[u].p&gt;<span class="number">1</span>) &#123;ans=<span class="number">-1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(t[t[u].l].p&amp;&amp;t[t[u].r].p) &#123;ans=<span class="number">-1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">	ans+=(t[t[u].r].d1&gt;t[t[u].l].d2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;t[i].l,&amp;t[i].r),</span><br><span class="line">		t[i].l=max(t[i].l,<span class="number">0</span>), t[i].r=max(t[i].r,<span class="number">0</span>);</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="DAY-0"><a href="#DAY-0" target="_blank" rel="noopener" class="headerlink" title="DAY 0"></a>DAY 0</h2><p>疯狂做国庆作业</p>
+<h2 id="DAY-1"><a href="#DAY-1" target="_blank" rel="noopener" class="headerlink" title="DAY 1"></a>DAY 1</h2><p>上午和下午和同学出去团建，很开心。晚上由于要赶去金山没有留下来。晚上参加了开营典礼，见到了鏼大神的真实面貌，然后就回房间了。</p>
+<p>晚上 yzc 的事情终于公布出来了，祝贺我们的 yzc 和 xsy 同学喜成真正公开的承认的人 win。</p>
+<h2 id="DAY-2"><a href="#DAY-2" target="_blank" rel="noopener" class="headerlink" title="DAY 2"></a>DAY 2</h2><p>这里早饭还挺好。这天讲的是 DP。早上讲了一堆背包（13 道左右），让我怀疑我学了假的背包.jpg。</p>
+<p>下午讲了一些状压 DP。晚上的当堂作业题一个是一个大背包，数据水的一匹，各种大背包做法都可以过，我拿了 100 分；第二题是有一个神仙状压题 围豆豆，晚上和 spartan117 一起研究了下搞懂了，但是到现在还没有实现代码，暴力也很难写。</p>
+<p>happydef 有一个蓝色的毛绒兔，他称之为兔队（小粉兔：？）。</p>
+<p><a href="https://larswerner-forevercaptain.github.io/2020/10/03/%E9%9B%86%E8%AE%AD-Day1/" target="_blank" rel="noopener">https://larswerner-forevercaptain.github.io/2020/10/03/%E9%9B%86%E8%AE%AD-Day1/</a></p>
+<h2 id="DAY-3"><a href="#DAY-3" target="_blank" rel="noopener" class="headerlink" title="DAY 3"></a>DAY 3</h2><p>这天讲图论。一开始讲了一堆 2-SAT。一个比较好玩并且常用的优化是前缀优化。金大神的题目果然真的很神。</p>
+<p>然后讲了很多，很多的构造题。感觉图论的构造题有很多都很耳目一新，很练思维，但是我太菜都没怎么想到。</p>
+<p>再就是 MST 和最短路。总体题目难度感觉比较大，主要是思维难度。这说明了我思维很差 /kk。</p>
+<p><a href="https://larswerner-forevercaptain.github.io/2020/10/04/%E9%9B%86%E8%AE%AD-Day2/" target="_blank" rel="noopener">https://larswerner-forevercaptain.github.io/2020/10/04/%E9%9B%86%E8%AE%AD-Day2/</a></p>
+<p>晚上的当堂作业题，第一题是一个隐式图，有惊无险地想到了正解，跑了一遍 MST 结束。第二题是一个前缀优化建图的 2-SAT，最后还是很顺利地调了出来。所以算是 AK 了。happydef 和 return 都比我先 AK。stO happydef return Orz</p>
+<p><a href="https://larswerner-forevercaptain.github.io/2020/10/04/[%E9%A2%98%E8%A7%A3]%E9%9B%86%E8%AE%AD-Day2%E4%BD%9C%E4%B8%9A/" target="_blank" rel="noopener">https://larswerner-forevercaptain.github.io/2020/10/04/[%E9%A2%98%E8%A7%A3]%E9%9B%86%E8%AE%AD-Day2%E4%BD%9C%E4%B8%9A/</a></p>
+<h2 id="DAY-4"><a href="#DAY-4" target="_blank" rel="noopener" class="headerlink" title="DAY 4"></a>DAY 4</h2><p>第三天讲组合计数。我深深感受到了数学没学好的悲剧。</p>
+<p>主要还是容斥 DP 外加一些组合数，</p>
+<p><a href="https://larswerner-forevercaptain.github.io/2020/10/05/%E9%9B%86%E8%AE%AD-Day3/" target="_blank" rel="noopener">https://larswerner-forevercaptain.github.io/2020/10/05/%E9%9B%86%E8%AE%AD-Day3/</a></p>
+<p>晚上作业也是组合计数。一开始第一题不会，打了个特殊点，但是还是花费了很多时间，很慌。开了第二题发现就是上课的题目的加强版。手推了下状压，然后花了点时间写了。最后一点时间补充了 T1 的几个特殊部分分。150+20=170 收场。</p>
+<p>xzy 他 AK 了。 stO xiaoyaowudi Orz。</p>
+<p>第一题其实是一个容斥。做三次容斥即可。</p>
+<p>休息的时候和 happydef 和 rolling_code 和 spartan117 玩了会儿 generals.io，感受到了我的菜。</p>
+<h2 id="DAY-5"><a href="#DAY-5" target="_blank" rel="noopener" class="headerlink" title="DAY 5"></a>DAY 5</h2><p>早上模拟赛。出题人很神仙，T1T2T3 都巨的要死。T1 是某 ACM 的出题人出的题目，T2 是一道 Ynoi，T3 是一个神仙题。T1T2T3都做不出来就很慌，然后暴力分也没有，T3 的暴力很难打。于是死命地去做 T1。想出来了一个应该没问题的正解，结果一个简单的细节步骤不会写了，当场暴毙。最后只有 20 分。</p>
+<p>下午讲数据结构，感觉有一些迷。数据结构是我的弱项之一 /kk。</p>
+<p>晚上初赛模拟，结果做完了 happydef 告诉我了这个题是某个神犇出的然后公开（？）了的。好难 /kk。最后只有 80 分，还依靠了很多玄学力量。</p>
+<p>学弟 wsc 上午模拟赛第一名，jhe 初赛模拟第一名，让我们一起膜拜他们 stO wsc jhe Orz。</p>
+<p>感觉 generals.io 更加会玩了。</p>
+<p>由于早上莫队没做出来，睡觉前爆艹了几道莫队并重新学了一下。</p>
+<h2 id="DAY-6"><a href="#DAY-6" target="_blank" rel="noopener" class="headerlink" title="DAY 6"></a>DAY 6</h2><p>早上还是模拟赛。这次模拟赛就好多了。T3 是数学题，先打了个 30 分暴力。T1 看上去比较杂，但是也有 60 分暴力，打了再说。看 T2 是一个乱搞的树的题目，想了一想没什么大想法，打了个 40 分暴力。然后回头看 T3，想到有个什么定理来着，可以将指数缩小，然后套用了一下变成了 50 分，拍上了。</p>
+<p>时间剩余不少，有充分的时间肝 T2。在疯狂地想和画之后，T2 推出来了一个奇怪的 $O(qx^3)$ 做法，不过也可以过，码了上去，样例没问题，开始对拍。结果对拍拍了好几下发现是错的，然后突然明白是自己的数据生成器写错了。白忙了好几分钟。最后得到的结果是 210 分，没有挂分，是好事。</p>
+<p>但是评测还是很刺激的。一开始发现所有人 T1 分数都不超过 40，然后出题人说是 std 写挂了，于是 T1 40-&gt;60。然后 T2 发现 40RE 了，感到不可思议，最后发现是评测栈空间出问题了，重弄了一下 40-&gt;100。</p>
+<p>xiaoyaowudi 又 AK 了，并且分数大于 240 分的 std。让我们疯狂膜拜巨佬 stO xiaoyaoduwi Orz</p>
+<h2 id="总结"><a href="#总结" target="_blank" rel="noopener" class="headerlink" title="总结"></a>总结</h2><p>5 天的集训到此结束了，5 天是日常被室友 spartan117，AK 巨佬 xiaoyaowudi，坐我旁边的 happydef return20071007 UltiMadow sxw2018 等人暴虐。</p>
+<p>还有，衫猹花 AK IOI！</p>
 
       
 
@@ -234,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:2020/09/28/[题解]LG3621 [APIO2007]风铃/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/07/集训游记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -248,18 +274,9 @@
   
 <nav id="article-nav">
   
-    <a href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [题解]BZOJ4883 棋盘上的守卫
-        
-      </div>
-    </a>
   
-  
-    <a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">0913模拟赛题解</div>
+    <a href="2020/10/06/[题解]集训-Day3作业/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解]集训-Day3作业</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -290,8 +307,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "LarsWerner-ForeverCapitain.github.io2020/09/28/[题解]LG3621 [APIO2007]风铃/", 
-    sourceId: "[题解]LG3621 [APIO2007]风铃",
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/07/集训游记/", 
+    sourceId: "集训游记",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };

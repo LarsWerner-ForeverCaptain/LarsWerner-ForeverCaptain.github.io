@@ -6,17 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>[题解]LG3621 [APIO2007]风铃 | blog of konjac LsWn</title>
+  <title>Archives: 2020 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目链接：https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3621">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[题解]LG3621 [APIO2007]风铃">
-<meta property="og:url" content="2020/09/28/%5B%E9%A2%98%E8%A7%A3%5DLG3621%20%5BAPIO2007%5D%E9%A3%8E%E9%93%83/index.html">
+  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:type" content="website">
+<meta property="og:title" content="blog of konjac LsWn">
+<meta property="og:url" content="archives/2020/page/3/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="题目链接：https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3621">
+<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-28T12:46:11.077Z">
-<meta property="article:modified_time" content="2020-09-28T13:25:39.912Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -150,159 +148,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[题解]LG3621 [APIO2007]风铃" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      [题解]LG3621 [APIO2007]风铃
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
     </h1>
   
 
-        
-        <a href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-28T12:46:11.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目链接：<a href="https://www.luogu.com.cn/problem/P3621" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3621</a></p>
-<a id="more"></a>
-<h2 id="题目大意"><a href="#题目大意" target="_blank" rel="noopener" class="headerlink" title="题目大意"></a>题目大意</h2><p>给定一棵二叉树，每次操作可以交换一个节点的两棵子树。问最少操作多少次可以让这颗二叉树成为完全二叉树。$n\le 10^5$。</p>
-<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>首先，如果所有叶节点的深度相差 $&gt;1$，那么肯定无法完成目标。于是现在只需要考虑左边的儿子更深的限制。</p>
-<p>然后，我们发现，其实这个最优化是一个幌子。我们只需要在每一个点上判断是否需要交换。如果需要交换，那么只能在这里交换。还需要判断一种不可能成功的情况。记录每一个节点的子树最深叶节点和最浅叶节点，深度差为 $p_i$。如果两个儿子的 $p_i$ 都 $&gt;0$，那么肯定是不可能交换成功的。如果右儿子的最深叶节点深度比左儿子的最浅叶节点的深度大，那么就需要交换。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span><span class="keyword">int</span> l,r,d1,d2,p;&#125;t[N]; <span class="keyword">int</span> hd[N],tot;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(u==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">	dfs(t[u].l), dfs(t[u].r);</span><br><span class="line">	<span class="keyword">if</span>(ans==<span class="number">-1</span>) <span class="keyword">return</span>;</span><br><span class="line">	t[u].d1=max(t[t[u].l].d1,t[t[u].r].d1)+<span class="number">1</span>;</span><br><span class="line">	t[u].d2=min(t[t[u].l].d2,t[t[u].r].d2)+<span class="number">1</span>;</span><br><span class="line">	t[u].p=t[u].d1-t[u].d2;</span><br><span class="line">	<span class="keyword">if</span>(t[u].p&gt;<span class="number">1</span>) &#123;ans=<span class="number">-1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(t[t[u].l].p&amp;&amp;t[t[u].r].p) &#123;ans=<span class="number">-1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">	ans+=(t[t[u].r].d1&gt;t[t[u].l].d2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;t[i].l,&amp;t[i].r),</span><br><span class="line">		t[i].l=max(t[i].l,<span class="number">0</span>), t[i].r=max(t[i].r,<span class="number">0</span>);</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:2020/09/28/[题解]LG3621 [APIO2007]风铃/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [题解]BZOJ4883 棋盘上的守卫
-        
-      </div>
-    </a>
-  
-  
-    <a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">0913模拟赛题解</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
+    	 
   
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "LarsWerner-ForeverCapitain.github.io2020/09/28/[题解]LG3621 [APIO2007]风铃/", 
-    sourceId: "[题解]LG3621 [APIO2007]风铃",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
   
 
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev noopener" href="archives/2020/page/2/" target="_blank">&amp;laquo; Prev</a><a class="page-number" href="archives/2020/" target="_blank" rel="noopener">1</a><a class="page-number" href="archives/2020/page/2/" target="_blank" rel="noopener">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -326,8 +244,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
