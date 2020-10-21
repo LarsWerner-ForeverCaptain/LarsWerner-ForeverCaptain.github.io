@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives | blog of konjac LsWn</title>
+  <title>浅谈随机化算法 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/page/3/index.html">
+  <meta name="description" content="一 随机化贪心你是否曾经看到过这样的一道题目  一共有 $n$ 个数，请你将这些数分成两组，使得这两组数每组数的总和的差最小。  暴力很简单，但是时间是 $O(2^n)$ 的，显然不能接受。 我们是否可以考虑贪心呢？怎么贪心比较好想。对于一个新加入的数，它需要贪心地加入目前总和最小的那组。 比如例子 {10, 3, 6, 1}，首先将 10 加入第一组，然后 3 加入第二组。第三个数 6 应该加入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈随机化算法">
+<meta property="og:url" content="2020/10/21/%E6%B5%85%E8%B0%88%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="一 随机化贪心你是否曾经看到过这样的一道题目  一共有 $n$ 个数，请你将这些数分成两组，使得这两组数每组数的总和的差最小。  暴力很简单，但是时间是 $O(2^n)$ 的，显然不能接受。 我们是否可以考虑贪心呢？怎么贪心比较好想。对于一个新加入的数，它需要贪心地加入目前总和最小的那组。 比如例子 {10, 3, 6, 1}，首先将 10 加入第一组，然后 3 加入第二组。第三个数 6 应该加入">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-21T10:52:35.759Z">
+<meta property="article:modified_time" content="2020-10-21T11:47:02.661Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,268 +150,201 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-浅谈随机化算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈随机化算法
+    </h1>
+  
+
+        
+        <a href="2020/10/21/浅谈随机化算法/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-10-21T10:52:35.759Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-随机化贪心"><a href="#一-随机化贪心" target="_blank" rel="noopener" class="headerlink" title="一 随机化贪心"></a>一 随机化贪心</h1><p>你是否曾经看到过这样的一道题目</p>
+<blockquote>
+<p>一共有 $n$ 个数，请你将这些数分成两组，使得这两组数每组数的总和的差最小。</p>
+</blockquote>
+<p>暴力很简单，但是时间是 $O(2^n)$ 的，显然不能接受。</p>
+<p>我们是否可以考虑贪心呢？怎么贪心比较好想。对于一个新加入的数，它需要贪心地加入目前总和最小的那组。</p>
+<p>比如例子 {10, 3, 6, 1}，首先将 10 加入第一组，然后 3 加入第二组。第三个数 6 应该加入目前和较小的那一组，即第二组，然后 1 应该加入目前和较小的那一组，即第二组。这样下来，我们可以得到一个最优解。</p>
+<p>但是贪心很多时候不能求出最优解。比如 {3,6,1,10}，这样贪心的话会直接 WA。</p>
+<p>但是我们可以发现，对于每一个例子，总有一种重排列，使得贪心是正确的。但是我们不能枚举所有全排列。怎么办呢？</p>
+<p><strong>随机化！</strong></p>
+<p>我们每次随机化一个重排列，得出这个重排列的贪心解，然后更新总答案。</p>
+<p>所以我们给出伪代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">repeat for many times:</span><br><span class="line">	random shuffle the array</span><br><span class="line">	var group1 &#x3D; 0, group2 &#x3D; 0</span><br><span class="line">	for i &#x3D; 1 to n:</span><br><span class="line">		if group1 &gt; group2: group2 &#x3D; group2 + a[i]</span><br><span class="line">		else: group1 &#x3D; group1 + a[i]</span><br><span class="line">	update ans with abs(group1 - group2)</span><br></pre></td></tr></table></figure>
+<p>怎么实现随机重排列？ C++ 有一个很好用的功能叫做 <code>random_shuffle(x,y)</code>。其中 x 和 y 分别填入你想要随机化的左端点地址和右端点地址。</p>
+<p>比如你想要随机化一段 $n$ 个元素的数组 ${a_1,…,a_n}$，你可以用 <code>random_shuffle(a+1,a+n+1)</code>。</p>
+<p>要注意，C++ 的随机化是伪随机，即如果不加特殊操作，每次运行程序，随机化的结果是一样的。有一个东西叫做随机化种子。对于不同的随机化种子，随机化的结果是不一样的。所以如果不是在 CCF 评测机上，可以这样做</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	srand(time(<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果在 NOI 联赛中，推荐用这个</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    srand(<span class="number">19260817</span>); <span class="comment">//19260817是某位著名领导人的生日，使用这个数字可以增加 rp</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>srand()</code> 内部的值可以你自己定义，比如你自己的生日，某位著名领导人的生日，某个著名大质数，<del>你喜欢的人的学号或者生日</del> 等等。</p>
+<p>所以下面给出本题代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">srand(<span class="number">19260817</span>);</span><br><span class="line">read();</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> t=<span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">while</span>(t--) &#123;</span><br><span class="line">    random_shuffle(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> g1=<span class="number">0</span>, g2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(g1&gt;g2) g2+=a[i];</span><br><span class="line">        <span class="keyword">else</span> g1+=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    ans=min(ans,<span class="built_in">abs</span>(g1-g2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题一-三角形牧场"><a href="#例题一-三角形牧场" target="_blank" rel="noopener" class="headerlink" title="例题一 三角形牧场"></a>例题一 三角形牧场</h2><blockquote>
+<p>和所有人一样，奶牛喜欢变化。它们正在设想新造型的牧场。奶牛建筑师 Hei 想建造围有漂亮白色栅栏的三角形牧场。她拥有 $n$ 块木板，每块的长度 $l_i$ 都是整数，她想用所有的木板围成一个三角形使得牧场面积最大。如果不存在三角形则输出 $-1$。</p>
+<p>请帮助 Hei 小姐构造这样的牧场，并计算出这个最大牧场的面积。</p>
+<p>$n,l_i\le 40$</p>
+</blockquote>
+<p>由柯西不等式（和直觉）可以得到，给定三条边的总长度，三条边越接近，三角形的面积最大。于是这道题被转换为和上面一道题一样的模型，我们用我们的随机化贪心解决即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">int</span> n,a[<span class="number">100</span>],p[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">double</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	srand(time(<span class="number">0</span>)+<span class="number">19260817</span>);</span><br><span class="line">    read();</span><br><span class="line">	rep(t,<span class="number">1</span>,<span class="number">1000000</span>) &#123;</span><br><span class="line">		random_shuffle(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">		p[<span class="number">0</span>]=a[<span class="number">1</span>], p[<span class="number">1</span>]=a[<span class="number">2</span>], p[<span class="number">2</span>]=a[<span class="number">3</span>];</span><br><span class="line">		rep(i,<span class="number">4</span>,n) p[p[<span class="number">0</span>]&lt;p[<span class="number">1</span>]&amp;&amp;p[<span class="number">0</span>]&lt;p[<span class="number">2</span>] ? <span class="number">0</span> : (p[<span class="number">1</span>]&lt;p[<span class="number">2</span>] ? <span class="number">1</span> : <span class="number">2</span>)]+=a[i];</span><br><span class="line">		<span class="keyword">if</span>(p[<span class="number">0</span>]+p[<span class="number">1</span>]&lt;p[<span class="number">2</span>]||p[<span class="number">1</span>]+p[<span class="number">2</span>]&lt;p[<span class="number">0</span>]||p[<span class="number">2</span>]+p[<span class="number">0</span>]&lt;p[<span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">double</span> pe=(p[<span class="number">0</span>]+p[<span class="number">1</span>]+p[<span class="number">2</span>])/<span class="number">2.</span>;</span><br><span class="line">		ans=max(ans,<span class="built_in">sqrt</span>(pe*(pe-p[<span class="number">0</span>])*(pe-p[<span class="number">1</span>])*(pe-p[<span class="number">2</span>])));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans==<span class="number">0</span> ? <span class="number">-1l</span>l : (<span class="keyword">int</span>)(ans*<span class="number">100</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题二-Haywaire"><a href="#例题二-Haywaire" target="_blank" rel="noopener" class="headerlink" title="例题二 Haywaire"></a>例题二 Haywaire</h2><blockquote>
+<p>Farmer John有 $N$ 只奶牛,($4 \leq N \leq 12$,其中 $N$ 是偶数)。每一头奶牛有 3 个朋友。现在请你给奶牛安排一个排列，使得每对奶牛朋友间的距离的总和最小。</p>
+</blockquote>
+<p>这道题放这里是为了体现随机化的优美。暴力需要 $O(n!)$，撑不过去。理论上可以暴力截断，但是太烦了。有什么更加简便优美的方法吗？模拟退火！我们接下去会讲模拟退火，但是这道题模拟退火由于常数比暴力随机更劣。我们每次随机化一个排列，然后计算一下即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">friends</span> &#123;</span><span class="keyword">int</span> l,r;&#125;e[N*<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> n,tot,id[N],ans=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">int</span> x=<span class="number">0</span>, f=<span class="number">1</span>; <span class="keyword">register</span> <span class="keyword">char</span> c=getchar();</span><br><span class="line">    <span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>) &#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>) f=<span class="number">-1</span>; c=getchar();&#125;</span><br><span class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+c<span class="number">-48</span>,c=getchar();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> sum=<span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">	rep(i,<span class="number">1</span>,tot) sum+=<span class="built_in">abs</span>(id[e[i].l]-id[e[i].r]);</span><br><span class="line">	ans=min(ans,sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    srand(time(<span class="number">19260817</span>));</span><br><span class="line">	n=read();</span><br><span class="line">	rep(i,<span class="number">1</span>,n) &#123;</span><br><span class="line">		<span class="keyword">int</span> a=read(), b=read(), c=read();</span><br><span class="line">		<span class="keyword">if</span>(a&gt;i) e[++tot]=(friends) &#123;a,i&#125;;</span><br><span class="line">		<span class="keyword">if</span>(b&gt;i) e[++tot]=(friends) &#123;b,i&#125;;</span><br><span class="line">		<span class="keyword">if</span>(c&gt;i) e[++tot]=(friends) &#123;c,i&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	rep(i,<span class="number">1</span>,n) id[i]=i;</span><br><span class="line">	rep(i,<span class="number">1</span>,<span class="number">1000000</span>) random_shuffle(id+<span class="number">1</span>,id+n+<span class="number">1</span>), calc();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题三-最大团问题"><a href="#例题三-最大团问题" target="_blank" rel="noopener" class="headerlink" title="例题三 最大团问题"></a>例题三 最大团问题</h2><p>我们体验一下用随机化做 NPC 问题的美感。</p>
+<blockquote>
+<p>“团”指从一个图中选出来一堆点，每对点间都<strong>直接</strong>有边相连。“最大团”就是指包含的点最多的那个团。给定一张图，让你求出最大团的大小。</p>
+<p>点数 $\le 50$。</p>
+</blockquote>
+<p>最大团问题可以用 <strong>折半搜索+状压 DP</strong> 解决。但是我们并不想这么麻烦。有什么其他办法吗？</p>
+<p>当然有！我们考虑普通的贪心。动态加入点。加入这个加入的点和以前所有加入的点都有连边，那么我们就选，否则就不选。第一个点必选。</p>
+<p>贪心的正确性很低。那么怎么办呢？随机化！我们多随机几遍不就行了？</p>
+<p>恭喜你，用优雅的暴力解决了一道 NPC 问题。</p>
+<p>当然，这不是正解。所谓一个问题的正解，必须保证运行出来的结果的答案保证是对的，并不涉及一些可能性的问题。但是为了能在考场上拿分，我们完全可以通过这种非正解但又正确性很高无法卡掉的办法去做。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register int i=(a);i&lt;=(b);i++)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">59</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,u,v,ans,tot,id[N];</span><br><span class="line"><span class="keyword">bool</span> e[N][N];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ch;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ch.clear(), tot=<span class="number">0</span>;</span><br><span class="line">	random_shuffle(id+<span class="number">1</span>,id+n+<span class="number">1</span>);</span><br><span class="line">	rep(i,<span class="number">1</span>,n) &#123;</span><br><span class="line">		<span class="keyword">bool</span> b=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(ch.size()) rep(j,<span class="number">0</span>,ch.size()<span class="number">-1</span>) b&amp;=e[id[i]][ch[j]];</span><br><span class="line">		<span class="keyword">if</span>(b) ch.push_back(id[i]), tot++;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=max(ans,tot);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	srand(time(<span class="number">0</span>));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v)!=EOF) e[u][v]=e[v][u]=<span class="number">1</span>;</span><br><span class="line">	rep(i,<span class="number">1</span>,n) id[i]=i;</span><br><span class="line">	rep(t,<span class="number">1</span>,<span class="number">100000</span>) solve();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="题目中所写到的题目的题目链接"><a href="#题目中所写到的题目的题目链接" target="_blank" rel="noopener" class="headerlink" title="题目中所写到的题目的题目链接"></a>题目中所写到的题目的题目链接</h1><p>例题一 三角形牧场  <a href="https://www.luogu.com.cn/problem/P1284" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1284</a></p>
+<p>例题二 Haywire <a href="https://www.luogu.com.cn/problem/P2210" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2210</a></p>
+<p>例题三 外太空旅行（最大团问题） <a href="https://www.luogu.com.cn/problem/P1284" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1284</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T08:26:22.153Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener">0920模拟赛题解</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/21/浅谈随机化算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/07/21/三道线段树/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-07-21T00:21:31.083Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="2020/10/21/[题解]LG4212 外太空问题/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [题解]LG4212 外太空问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="2020/10/21/[题解]LG1284 三角形牧场/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解]LG1284 三角形牧场</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/07/21/三道线段树/" target="_blank" rel="noopener">三道线段树</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/21/浅谈随机化算法/", 
+    sourceId: "浅谈随机化算法",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/07/05/那年那树那些事/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-07-05T06:36:29.281Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/07/05/那年那树那些事/" target="_blank" rel="noopener">那年那树那些事</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/06/05/多项式/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-06-05T10:44:26.305Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/06/05/多项式/" target="_blank" rel="noopener">多项式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-05-14T14:57:42.698Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/05/14/莫比乌斯反演/" target="_blank" rel="noopener">莫比乌斯反演</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-29T10:29:52.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/29/偏数学的定理/" target="_blank" rel="noopener">偏数学的定理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/09/网络流建模/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-09T04:27:35.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/09/网络流建模/" target="_blank" rel="noopener">网络流建模</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-07T06:10:22.840Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/07/省选图论题单一些题解/" target="_blank" rel="noopener">省选图论题单一些题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/04/03/导数笔记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-04-03T02:19:18.643Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/04/03/导数笔记/" target="_blank" rel="noopener">导数笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev noopener" href="archives/page/2/" target="_blank">&amp;laquo; Prev</a><a class="page-number" href="archives/" target="_blank" rel="noopener">1</a><a class="page-number" href="archives/page/2/" target="_blank" rel="noopener">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -433,8 +368,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
