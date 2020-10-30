@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>Archives: 2020 | blog of konjac LsWn</title>
+  <title>[题解]LG4310 绝世好题 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="archives/2020/page/2/index.html">
+  <meta name="description" content="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4310">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[题解]LG4310 绝世好题">
+<meta property="og:url" content="2020/10/29/%5B%E9%A2%98%E8%A7%A3%5DLG4310%20%E7%BB%9D%E4%B8%96%E5%A5%BD%E9%A2%98/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4310">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-29T11:34:14.887Z">
+<meta property="article:modified_time" content="2020-10-29T11:34:15.160Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,295 +150,151 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-[题解]LG4310 绝世好题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [题解]LG4310 绝世好题
+    </h1>
+  
+
+        
+        <a href="2020/10/29/[题解]LG4310 绝世好题/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-10-29T11:34:14.887Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.luogu.com.cn/problem/P4310" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P4310</a></p>
+<a id="more"></a>
+<h2 id="题目描述"><a href="#题目描述" target="_blank" rel="noopener" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定 $a_{1…n}$，求 $a_i$ 子序列 $b_i$ 最长长度满足 $b_i\&amp;b_{i-1}\neq 0$。</p>
+<p>$1\le n\le 100000$。</p>
+<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>80分算法 $f(i)$ 表示前 $i$ 个且选 $i$ 的最长长度，随便 DP 即可。</p>
+<p>100分算法 考虑分位DP，$f(i)$ 表示第 $i$ 位不为 $0$ 的最长长度，动态更新。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register int i=(a);i&lt;=(b);i++)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,f[<span class="number">39</span>],ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	rep(i,<span class="number">1</span>,n) &#123;</span><br><span class="line">		<span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		<span class="keyword">int</span> mx=<span class="number">0</span>;</span><br><span class="line">		rep(i,<span class="number">0</span>,<span class="number">30</span>) <span class="keyword">if</span>((<span class="number">1</span>&lt;&lt;i)&amp;x) mx=max(mx,f[i]+<span class="number">1</span>);</span><br><span class="line">		rep(i,<span class="number">0</span>,<span class="number">30</span>) <span class="keyword">if</span>((<span class="number">1</span>&lt;&lt;i)&amp;x) f[i]=max(f[i],mx);</span><br><span class="line">		rep(i,<span class="number">0</span>,<span class="number">30</span>) ans=max(ans,f[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="archives/2020" target="_blank" rel="noopener" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/07/集训游记/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-07T14:53:52.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/07/集训游记/" target="_blank" rel="noopener">集训游记</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/29/[题解]LG4310 绝世好题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/06/[题解]集训-Day3作业/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-05T22:31:48.190Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="2020/10/26/1025模拟赛题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1025模拟赛题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/06/[题解]集训-Day3作业/" target="_blank" rel="noopener">[题解]集训-Day3作业</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/29/[题解]LG4310 绝世好题/", 
+    sourceId: "[题解]LG4310 绝世好题",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/05/集训-Day3/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-05T13:33:50.592Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/05/集训-Day3/" target="_blank" rel="noopener">集训-Day3</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/[题解]集训-Day2作业/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T15:03:55.798Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/[题解]集训-Day2作业/" target="_blank" rel="noopener">[题解]集训-Day2作业</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/[题解]LG4141 消失之物/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T10:12:05.917Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/[题解]LG4141 消失之物/" target="_blank" rel="noopener">[题解]LG4141 消失之物</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/集训-Day2/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T10:05:51.490Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/集训-Day2/" target="_blank" rel="noopener">集训-Day2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T05:15:59.073Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener">[题解]LG3188 [HNOI2007]梦幻岛宝珠</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T11:58:20.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener">[题解]KK2310 背盆</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/03/集训-Day1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T05:03:17.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/03/集训-Day1/" target="_blank" rel="noopener">集训-Day1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-02T10:27:07.951Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener">[题解]ACL Contest 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev noopener" href="archives/2020/" target="_blank">&amp;laquo; Prev</a><a class="page-number" href="archives/2020/" target="_blank" rel="noopener">1</a><span class="page-number current">2</span><a class="page-number" href="archives/2020/page/3/" target="_blank" rel="noopener">3</a><a class="page-number" href="archives/2020/page/4/" target="_blank" rel="noopener">4</a><a class="extend next" rel="next noopener" href="archives/2020/page/3/" target="_blank">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +318,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
