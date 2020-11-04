@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>blog of konjac LsWn</title>
+  <title>1031模拟赛题解 | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the blog of konjac LarsWerner-ForeverCaptain">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog of konjac LsWn">
-<meta property="og:url" content="page/3/index.html">
+  <meta name="description" content="dTest21 contest20201101">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1031模拟赛题解">
+<meta property="og:url" content="2020/10/31/1031%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="the blog of konjac LarsWerner-ForeverCaptain">
+<meta property="og:description" content="dTest21 contest20201101">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-31T13:33:03.587Z">
+<meta property="article:modified_time" content="2020-11-01T09:20:06.469Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -148,36 +150,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-[题解]LG3188 [HNOI2007]梦幻岛宝珠" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-1031模拟赛题解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener">[题解]LG3188 [HNOI2007]梦幻岛宝珠</a>
+    <h1 class="article-title" itemprop="name">
+      1031模拟赛题解
     </h1>
   
 
         
-        <a href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-04T05:15:59.073Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-04</time>
+        <a href="2020/10/31/1031模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-10-31T13:33:03.587Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>【题意】</p>
-<blockquote>
-<p>01 背包。$1\le n\le 100, 1\le W,w_i,v_i\le 2^{30}, a\le 10, b\le 30$。保证每个 $w_i$ 能写成 $a\times 2^b (a,b\in N)$ 的形式，且答案不超过 $2^{30}$。</p>
-<p><a href="https://www.luogu.com.cn/problem/P3188" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3188</a></p>
-</blockquote>
-        
-          <a class="article-more-a" href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/#more" target="_blank" rel="noopener">more >></a>
-        
+        <p>dTest21</p>
+<p>contest20201101</p>
+<a id="more"></a>
+<h1 id="B-第一题"><a href="#B-第一题" target="_blank" rel="noopener" class="headerlink" title="B 第一题"></a>B 第一题</h1><h2 id="题意"><a href="#题意" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>给定 $n,m$，问有多少正整数对 $(a,b)$ 满足 $a\le n, b\le m$ 且 $(\sqrt a + \sqrt b)^2\in Z$。</p>
+<p>$n,m\le 2\times 10^6$。</p>
+<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>考场上解出来了。感觉比较简单。题意中的式子可以简化为 $ab$ 为完全平方数。</p>
+<p>于是我们可以通过枚举 $a$，然后质因数分解每一个枚举的 $a$，计算有多少个符合的 $b$。复杂度 $O(n\sqrt n)$。</p>
+<p>由于我们只需要知道 $a$ 除去自己的所有偶数因子是几，然后这个可以通过筛的方法去做。复杂度 $\sum \sqrt{\frac{n}{i}}=\sqrt n\sum i^{-\frac{1}{2}}=O(n)$。</p>
+<h1 id="C-消除贫困"><a href="#C-消除贫困" target="_blank" rel="noopener" class="headerlink" title="C 消除贫困"></a>C 消除贫困</h1><h2 id="题意-1"><a href="#题意-1" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>给定一个序列，支持两种操作。一，单点修改为 $x$。二，集体 $a_i=max(a_i,x)$。问最终的序列。</p>
+<p>$n,q\le 2\times 10^5$。</p>
+<h2 id="题解-1"><a href="#题解-1" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>一道很智障的题目，但是考场上竟然没有想出来。</p>
+<p>对于一个数，唯一对他有用的单点修改为他的最后一次单点修改，对他可能有用的集体扶贫为在他最后一次单点修改后的 $x$ 最大的集体扶贫。扫一遍统计后缀最大值即可。</p>
+
       
 
       
@@ -188,16 +193,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/10/04/[题解]LG3188 [HNOI2007]梦幻岛宝珠/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/10/31/1031模拟赛题解/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="2020/11/01/[题解]ARC103/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          [题解]ARC103
+        
+      </div>
+    </a>
+  
+  
+    <a href="2020/10/29/[题解]LG4310 绝世好题/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[题解]LG4310 绝世好题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -217,598 +290,25 @@
 
 
 
-
-  
-    <article id="post-[题解]KK2310 背盆" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener">[题解]KK2310 背盆</a>
-    </h1>
-  
-
-        
-        <a href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T11:58:20.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先按照性价比贪心一下。可以证明，贪心解和正解不会相差超过 $2w_i$ 个物品，所以相差的这些物品的总容量为 $2w_i^2$。所以可以在后面做一次 $O(n\times 2w_i^2)$ 的背包 DP。</p>
-<p>对于证明上述性质，可以用调整法。</p>
-        
-          <a class="article-more-a" href="2020/10/03/[题解]KK2310 背盆/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/10/03/[题解]KK2310 背盆/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-集训-Day1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/10/03/集训-Day1/" target="_blank" rel="noopener">集训-Day1</a>
-    </h1>
-  
-
-        
-        <a href="2020/10/03/集训-Day1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-03T05:03:17.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DP"><a href="#DP" target="_blank" rel="noopener" class="headerlink" title="DP"></a>DP</h1>
-        
-          <a class="article-more-a" href="2020/10/03/集训-Day1/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/10/03/集训-Day1/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[题解]ACL Contest 1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener">[题解]ACL Contest 1</a>
-    </h1>
-  
-
-        
-        <a href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-10-02T10:27:07.951Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>比赛链接：<a href="https://atcoder.jp/contests/acl1" target="_blank" rel="noopener">https://atcoder.jp/contests/acl1</a></p>
-        
-          <a class="article-more-a" href="2020/10/02/[题解]ACL Contest 1/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/10/02/[题解]ACL Contest 1/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[题解]BZOJ4883 棋盘上的守卫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener">[题解]BZOJ4883 棋盘上的守卫</a>
-    </h1>
-  
-
-        
-        <a href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-29T11:42:56.229Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目链接 <a href="https://darkbzoj.tk/problem/4883" target="_blank" rel="noopener">https://darkbzoj.tk/problem/4883</a></p>
-        
-          <a class="article-more-a" href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/09/29/[题解]BZOJ4883 棋盘上的守卫/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[题解]LG3621 [APIO2007]风铃" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener">[题解]LG3621 [APIO2007]风铃</a>
-    </h1>
-  
-
-        
-        <a href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-28T12:46:11.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目链接：<a href="https://www.luogu.com.cn/problem/P3621" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3621</a></p>
-        
-          <a class="article-more-a" href="2020/09/28/[题解]LG3621 [APIO2007]风铃/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/09/28/[题解]LG3621 [APIO2007]风铃/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-0913模拟赛题解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener">0913模拟赛题解</a>
-    </h1>
-  
-
-        
-        <a href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T22:29:33.177Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Test12 contest20200913</p>
-        
-          <a class="article-more-a" href="2020/09/28/0913模拟赛题解/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/09/28/0913模拟赛题解/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-0920模拟赛题解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener">0920模拟赛题解</a>
-    </h1>
-  
-
-        
-        <a href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-09-27T08:26:22.153Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SH-Test13 contest20200920</p>
-        
-          <a class="article-more-a" href="2020/09/27/0920模拟赛题解/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/09/27/0920模拟赛题解/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-三道线段树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/07/21/三道线段树/" target="_blank" rel="noopener">三道线段树</a>
-    </h1>
-  
-
-        
-        <a href="2020/07/21/三道线段树/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-07-21T00:21:31.083Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>FDFZ JXD 作业</p>
-        
-          <a class="article-more-a" href="2020/07/21/三道线段树/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/07/21/三道线段树/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-那年那树那些事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/07/05/那年那树那些事/" target="_blank" rel="noopener">那年那树那些事</a>
-    </h1>
-  
-
-        
-        <a href="2020/07/05/那年那树那些事/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-07-05T06:36:29.281Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="最小斯坦纳树"><a href="#最小斯坦纳树" target="_blank" rel="noopener" class="headerlink" title="最小斯坦纳树"></a>最小斯坦纳树</h2>
-        
-          <a class="article-more-a" href="2020/07/05/那年那树那些事/#more" target="_blank" rel="noopener">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="2020/07/05/那年那树那些事/" target="_blank" rel="noopener">戳我看全文~ >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev noopener" href="page/2/" target="_blank">&amp;laquo; Prev</a><a class="page-number" href="">1</a><a class=" target="_blank" rel="noopener"page-number" href="page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="page/4/" target="_blank" rel="noopener">4</a><a class="extend next" rel="next noopener" href="page/4/" target="_blank">Next &amp;raquo;</a>
-    </nav>
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "LarsWerner-ForeverCapitain.github.io2020/10/31/1031模拟赛题解/", 
+    sourceId: "1031模拟赛题解",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
   
 
 
@@ -831,8 +331,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
