@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="LarsWerner-ForeverCapitain.github.io">
-  <title>[题解]ARC103 | blog of konjac LsWn</title>
+  <title>[题解]CF838D Airplane Arrangements | blog of konjac LsWn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A &#x2F;\&#x2F;\&#x2F;\&#x2F;题意给定 偶数长度的序列 $\{a_n\}$，每次可以选择一个数替换掉一个位置，问最少操作多少次使得对于所有 $i$，$a_i&#x3D;a_{i+2}\neq a_{i+1}$。$n\le 10^5$。 题解即让数列满足有且只有两种数字，$a_1$ 和 $a_2$。所以我们只需要确定这两个值取什么比较好。我们将原数列拆分成两个数列，奇项和偶项。我们对这两个数列分别求出哪个元素最多或次多，">
+  <meta name="description" content="神 仙 题。 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF838D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[题解]ARC103">
-<meta property="og:url" content="2020/11/01/%5B%E9%A2%98%E8%A7%A3%5DARC103/index.html">
+<meta property="og:title" content="[题解]CF838D Airplane Arrangements">
+<meta property="og:url" content="2020/11/04/%5B%E9%A2%98%E8%A7%A3%5DCF838D%20Airplane%20Arrangements/index.html">
 <meta property="og:site_name" content="blog of konjac LsWn">
-<meta property="og:description" content="A &#x2F;\&#x2F;\&#x2F;\&#x2F;题意给定 偶数长度的序列 $\{a_n\}$，每次可以选择一个数替换掉一个位置，问最少操作多少次使得对于所有 $i$，$a_i&#x3D;a_{i+2}\neq a_{i+1}$。$n\le 10^5$。 题解即让数列满足有且只有两种数字，$a_1$ 和 $a_2$。所以我们只需要确定这两个值取什么比较好。我们将原数列拆分成两个数列，奇项和偶项。我们对这两个数列分别求出哪个元素最多或次多，">
+<meta property="og:description" content="神 仙 题。 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;CF838D">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-01T06:59:49.223Z">
-<meta property="article:modified_time" content="2020-11-01T09:02:43.189Z">
+<meta property="article:published_time" content="2020-11-04T03:53:53.304Z">
+<meta property="article:modified_time" content="2020-11-04T04:30:25.545Z">
 <meta property="article:author" content="konjac LarsWerner">
 <meta name="twitter:card" content="summary">
   
@@ -150,46 +150,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[题解]ARC103" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[题解]CF838D Airplane Arrangements" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [题解]ARC103
+      [题解]CF838D Airplane Arrangements
     </h1>
   
 
         
-        <a href="2020/11/01/[题解]ARC103/" target="_blank" rel="noopener" class="archive-article-date">
-  	<time datetime="2020-11-01T06:59:49.223Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+        <a href="2020/11/04/[题解]CF838D Airplane Arrangements/" target="_blank" rel="noopener" class="archive-article-date">
+  	<time datetime="2020-11-04T03:53:53.304Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="A"><a href="#A" target="_blank" rel="noopener" class="headerlink" title="A /\/\/\/"></a>A /\/\/\/</h1><h2 id="题意"><a href="#题意" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>给定 偶数长度的序列 $\{a_n\}$，每次可以选择一个数替换掉一个位置，问最少操作多少次使得对于所有 $i$，$a_i=a_{i+2}\neq a_{i+1}$。$n\le 10^5$。</p>
-<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>即让数列满足有且只有两种数字，$a_1$ 和 $a_2$。所以我们只需要确定这两个值取什么比较好。我们将原数列拆分成两个数列，奇项和偶项。我们对这两个数列分别求出哪个元素最多或次多，然后枚举4种情况，让 $a_1\neq a_2$ 即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register int i=(a);i&lt;=(b);i++)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,a[N],c[N][<span class="number">2</span>],mx[<span class="number">2</span>][<span class="number">2</span>],gp[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	rep(i,<span class="number">1</span>,n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]), c[a[i]][i%<span class="number">2</span>]++;</span><br><span class="line">	rep(g,<span class="number">0</span>,<span class="number">1</span>) rep(i,<span class="number">1</span>,<span class="number">100000</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(c[i][g]&gt;c[mx[g][<span class="number">1</span>]][g]) mx[g][<span class="number">1</span>]=i;</span><br><span class="line">		<span class="keyword">if</span>(c[mx[g][<span class="number">1</span>]][g]&gt;c[mx[g][<span class="number">0</span>]][g]) swap(mx[g][<span class="number">1</span>],mx[g][<span class="number">0</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	rep(g,<span class="number">0</span>,<span class="number">1</span>) gp[g]=c[mx[g][<span class="number">0</span>]][g]-c[mx[g][<span class="number">1</span>]][g];</span><br><span class="line">	<span class="keyword">if</span>(mx[<span class="number">0</span>][<span class="number">0</span>]!=mx[<span class="number">1</span>][<span class="number">0</span>]) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-c[mx[<span class="number">0</span>][<span class="number">0</span>]][<span class="number">0</span>]-c[mx[<span class="number">1</span>][<span class="number">0</span>]][<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-c[mx[<span class="number">0</span>][<span class="number">0</span>]][<span class="number">0</span>]-c[mx[<span class="number">1</span>][<span class="number">0</span>]][<span class="number">1</span>]+min(gp[<span class="number">0</span>],gp[<span class="number">1</span>]));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="B-Robot-Arms"><a href="#B-Robot-Arms" target="_blank" rel="noopener" class="headerlink" title="B Robot Arms"></a>B Robot Arms</h1><h2 id="题意-1"><a href="#题意-1" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>给定 $n$ 组坐标。构造长度为 $m$ 的序列 $c_i$ 和 $n$ 组路径方向，满足对于每一组坐标</p>
-<ul>
-<li>对于每个坐标，从原点出发，走 $m$ 步。每一步可以沿着这一组路径方向走 $c_i$。</li>
-<li>走完以后刚好走到这组坐标。</li>
-<li>$m\le 40, c_i\le 10^{12}$。</li>
-</ul>
-<p>$1\le n\le 1000$。</p>
-<h2 id="题解-1"><a href="#题解-1" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>比较明显，$m$ 在 $\log$ 级别，又看到凑整数拆分可以想到倍增的数列 $1,2,4,8…$。所以我们可以发现。然后分奇偶讨论。偶数的话还需要再加一个 $1$。</p>
-<p>看一下什么时候无解。无解情况即出现了 $x_i+y_i$ 奇偶性和其他不同的情况。</p>
-<p>然后看怎么构造路径。可以贪心构造解。每次往距离 $(x,y)$ 最近的点走即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register int i=(a);i&lt;=(b);i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,a,b) for(register int i=(a);i&gt;=(b);i--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,x[N],y[N],t=<span class="number">-1</span>,c[N];</span><br><span class="line"><span class="keyword">char</span> dir[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">	rep(i,<span class="number">1</span>,n) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;x[i],&amp;y[i]);</span><br><span class="line">		<span class="keyword">if</span>(t==<span class="number">-1</span>) t=(x[i]+y[i])%<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(t!=(<span class="built_in">abs</span>(x[i]+y[i])&amp;<span class="number">1</span>)) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"-1"</span>), <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,<span class="number">32</span>-t);</span><br><span class="line">	<span class="keyword">if</span>(t) &#123;rep(i,<span class="number">0</span>,<span class="number">30</span>) <span class="built_in">printf</span>(<span class="string">"%lld"</span>,c[i+<span class="number">1</span>]=(<span class="number">1</span>&lt;&lt;i)), <span class="built_in">putchar</span>(i==<span class="number">30</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld "</span>,c[<span class="number">1</span>]=<span class="number">1</span>);</span><br><span class="line">		rep(i,<span class="number">0</span>,<span class="number">30</span>) <span class="built_in">printf</span>(<span class="string">"%lld"</span>,c[i+<span class="number">2</span>]=(<span class="number">1</span>&lt;&lt;i)), <span class="built_in">putchar</span>(i==<span class="number">30</span> ? <span class="string">'\n'</span> : <span class="string">' '</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	rep(i,<span class="number">1</span>,n) &#123;</span><br><span class="line">		<span class="keyword">int</span> ux=<span class="number">0</span>, uy=<span class="number">0</span>;</span><br><span class="line">		per(j,<span class="number">32</span>-t,<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> vx=x[i]-ux, vy=y[i]-uy;</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">abs</span>(vx)&gt;<span class="built_in">abs</span>(vy)&amp;&amp;vx&gt;<span class="number">0</span>) ux+=c[j], dir[j]=<span class="string">'R'</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">abs</span>(vx)&lt;=<span class="built_in">abs</span>(vy)&amp;&amp;vy&gt;<span class="number">0</span>) uy+=c[j], dir[j]=<span class="string">'U'</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">abs</span>(vx)&gt;<span class="built_in">abs</span>(vy)&amp;&amp;vx&lt;=<span class="number">0</span>) ux-=c[j], dir[j]=<span class="string">'L'</span>;</span><br><span class="line">			<span class="keyword">else</span> uy-=c[j], dir[j]=<span class="string">'D'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		rep(j,<span class="number">1</span>,<span class="number">32</span>-t) <span class="built_in">putchar</span>(dir[j]); <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="C-Tr-ee"><a href="#C-Tr-ee" target="_blank" rel="noopener" class="headerlink" title="C Tr/ee"></a>C Tr/ee</h1><h2 id="题意-2"><a href="#题意-2" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>给定长 $1$ 的01序列 $s$，构造一棵 $n$ 个节点的树，满足若 $s_i$ 为 $1$ 则一定存在割掉一条边后大小为 $i$  的连通块，否则一定不存在。</p>
-<p>$n\le 10^5$。</p>
-<h2 id="题解-2"><a href="#题解-2" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>是否有解很好判断（自己独立想出来了），但是构造需要熟悉树的结构。</p>
-<p>有解情况满足：$s_0=0, s_1=1, s_i=s_{n-i}$。</p>
-<p>我们可以用一种类似于往链上套菊花的方法去构造树。假设有 $k$ 个 1，位置 $id_1…id_k$。于是我们取一条 $k+1$ 的链，然后链上的第 $i$ 个点挂上 $id_i-id_{i-1}-1$ 个点的菊花。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register int i=(a);i&lt;=(b);i++)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> n,k,id[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">'0'</span>||s[n]==<span class="string">'1'</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	rep(i,<span class="number">1</span>,n/<span class="number">2</span>) <span class="keyword">if</span>(s[i]!=s[n-i]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>), n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(!check()) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"-1"</span>), <span class="number">0</span>;</span><br><span class="line">	rep(i,<span class="number">1</span>,n) <span class="keyword">if</span>(s[i]==<span class="string">'1'</span>) id[++k]=i;</span><br><span class="line">	<span class="keyword">int</span> node=k+<span class="number">1</span>; </span><br><span class="line">	rep(i,<span class="number">1</span>,k) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,i,i+<span class="number">1</span>);</span><br><span class="line">		rep(j,<span class="number">1</span>,id[i]-id[i<span class="number">-1</span>]<span class="number">-1</span>) <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,i,++node);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>神 仙 题。</p>
+<p><a href="https://www.luogu.com.cn/problem/CF838D" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/CF838D</a></p>
+<a id="more"></a>
+<h2 id="题意"><a href="#题意" target="_blank" rel="noopener" class="headerlink" title="题意"></a>题意</h2><p>有排成一列的 $n$ 个座位，$m$ 名乘客依次上飞机。每个乘客都有一个目标座位，然后回选择从前门或者后门上飞机。上飞机后会先走到自己的目标座位，若目标座位已被占据，会向前走到第一个空位后坐下。如果没法找到合格的空位，那么就不能入座。</p>
+<p>问有多少种目标座位和上前后门的安排方案使得所有人都能入座。</p>
+<p>$n,m\le 10^6$。</p>
+<h2 id="题解"><a href="#题解" target="_blank" rel="noopener" class="headerlink" title="题解"></a>题解</h2><p>1 神仙转换：以前题目都是环不好考虑转换成序列。这道题目是序列不好考虑转换为环。我峨嵋你假设座位拍成一个环，$1$ 和 $n$ 之间夹了一个座位 $n+1$，我们不能走到 $n+1$ 上。</p>
+<p>2 神仙转换：以前题目都是概率不好考虑转换为计数，这道题目是计数不好考虑转换为概率。我们计算每个人安排好且不到 $n+1$ 上的概率是多少。对于每一个位置，它被占据的概率位 $\frac{m}{n+1}$，所以答案位 $1-\frac{m}{n+1}$。</p>
+<p>于是我们得到方案数为 $(2(n+1))^m\frac{n+1-m}{n+1}=2^m(n+1)^{m-1}(n+1-m)$。</p>
 
       
 
@@ -248,7 +237,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:2020/11/01/[题解]ARC103/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:2020/11/04/[题解]CF838D Airplane Arrangements/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,18 +251,18 @@
   
 <nav id="article-nav">
   
-    <a href="2020/11/01/[题解]LG2466 Sue的小球/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="2020/11/23/online-education-infrastructure-to-alleviate-poverty/" target="_blank" rel="noopener" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          [题解]LG2466 Sue的小球
+          online-education-infrastructure-to-alleviate-poverty
         
       </div>
     </a>
   
   
-    <a href="2020/10/31/1031模拟赛题解/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1031模拟赛题解</div>
+    <a href="2020/11/03/提高板子默写/" target="_blank" rel="noopener" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">提高板子默写</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -304,8 +293,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "LarsWerner-ForeverCapitain.github.io2020/11/01/[题解]ARC103/", 
-    sourceId: "[题解]ARC103",
+    url: "LarsWerner-ForeverCapitain.github.io2020/11/04/[题解]CF838D Airplane Arrangements/", 
+    sourceId: "[题解]CF838D Airplane Arrangements",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
